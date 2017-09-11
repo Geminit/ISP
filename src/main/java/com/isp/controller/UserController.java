@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @Controller
-@RequestMapping("/ispss")
+@RequestMapping("/isp")
 public class UserController {
 
     //添加一个日志器
