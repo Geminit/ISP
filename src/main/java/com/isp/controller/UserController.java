@@ -33,6 +33,7 @@ public class UserController {
         logger.info("the first jsp pages");
 
         model.addAttribute("name","geminit");
+        model.addAttribute("content","王豪杰是一个大傻逼！");
 
         //返回一个index.jsp这个视图
         return "index";

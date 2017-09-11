@@ -16,7 +16,7 @@
     <body>
         <div class="container">
             <div class="jumbotron">
-                <h1>欢迎登陆页面！</h1>
+                <h1>${content}</h1>
                 <p id="chg">这是一个超大屏幕（Jumbotron）的实例。</p>
                 <p><input id="input"></p>
                 <p><a class="btn btn-primary btn-lg" role="button" id="btn">
