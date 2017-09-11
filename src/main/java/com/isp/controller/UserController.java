@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @Controller
-@RequestMapping("/ips")
+@RequestMapping("/ispss")
 public class UserController {
 
     //添加一个日志器
@@ -45,10 +45,7 @@ public class UserController {
     public String demo(Model model, HttpServletRequest request){
 
         Long input = Long.parseLong(request.getParameter("input"));
-
-
         User user = userService.getUserById(input);
-
         //返回一个index.jsp这个视图
         return user.getUserName();
     }
