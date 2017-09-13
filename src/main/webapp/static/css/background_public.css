@@ -8,17 +8,33 @@
     left:2.5%;
 }
 
+#input-box{
+    position: relative;
+    left:2%;
+}
+
 #button-ned{
     position: relative;
-    left:-2%;
+    top: 10px;
 }
 
 #table-box{
     position: relative;
-    top: 10px;
+    top: 20px;
 }
 
 td
 {
     text-align:center;
+}
+
+#page-text{
+    position: relative;
+    top: 20px;
+}
+
+#page-button{
+    float: right;
+    position: relative;
+    top: -20px;
 }

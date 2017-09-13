@@ -1,7 +1,5 @@
 package com.isp.service;
 
-import com.isp.entity.User;
-
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +10,11 @@ import java.util.Map;
 
 public interface UserService {
 
-    User getUserById(Long userId);
-
     List<Object> getUserByPage(Map<String, Object> argsMap);
+
+    List<Object> getUserByAccount(String account);
+
+    Integer getTotalNumber();
+
+    void insertUser(Map<String, Object> argsMap);
 }

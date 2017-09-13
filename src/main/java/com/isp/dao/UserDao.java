@@ -1,6 +1,5 @@
 package com.isp.dao;
 
-import com.isp.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +14,11 @@ import java.util.Map;
 @Repository
 public interface UserDao {
 
-    User selectUserById(@Param("userId") Long userId);
-
     List<Object> getUserByPage(Map<String, Object> argsMap);
+
+    List<Object> getUserByAccount(@Param("account")String account);
+
+    Integer getTotalNumber();
+
+    void insertUser(Map<String, Object> argsMap);
 }

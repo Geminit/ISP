@@ -1,11 +1,14 @@
 package com.isp.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.isp.service.UserService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -29,10 +32,12 @@ public class UserController {
 
     //用户管理主页
     @RequestMapping("/index")
-//    @ResponseBody
     public String index(Model model, HttpServletRequest request){
+        int page = 1;
+        try {
+            page = Integer.parseInt(request.getParameter("page"));     //获取页数
+        }catch (Exception exception){}
 
-        int page = Integer.parseInt(request.getParameter("page"));     //获取页数
         int start = (page-1) * 10;                                       //获取起始页数
         int end = page * 10;
         Map<String, Object> argsMap = new HashMap<String, Object>();
@@ -40,9 +45,58 @@ public class UserController {
         argsMap.put("end", end);
         List<Object> list = userService.getUserByPage(argsMap);         //SQL查询
 
+        double number = userService.getTotalNumber();                   //总记录条数
+        int pageNumber = (int) Math.ceil(number/10);                    //总页数
+
+        model.addAttribute("currentpage", page);
+        model.addAttribute("page", pageNumber);
+        model.addAttribute("previous", page-1);
+        model.addAttribute("last", page+1);
+        model.addAttribute("total", (int) number);
         model.addAttribute("user", list);
         return "background_user";
     }
 
+    //用户查询（账号）
+    @RequestMapping("/searchByAccount")
+    @ResponseBody
+    public String searchByAccount(HttpServletRequest request){
+        String account = request.getParameter("account");
+        List<Object> list = userService.getUserByAccount(account);
+        JSONArray resultJson = (JSONArray) JSONArray.toJSON(list);
+        String resultString = resultJson.toString();
+        System.out.println(resultString);
+        return resultString;
+    }
 
+    //新建用户
+    @RequestMapping("/insertUser")
+    @ResponseBody
+    public String insertUser(HttpServletRequest request){
+        String account = request.getParameter("account");
+        String password = request.getParameter("password");
+        String username = request.getParameter("username");
+        String role = request.getParameter("role");
+        String status = request.getParameter("status");
+        String email = request.getParameter("email");
+
+        Map<String, Object> argsMap = new HashMap<String, Object>();
+        argsMap.put("account", account);
+        argsMap.put("password", password);
+        argsMap.put("username", username);
+        argsMap.put("role", role);
+        argsMap.put("status", status);
+        argsMap.put("email", email);
+
+        String result;
+        try {
+            userService.insertUser(argsMap);
+            result = "{'result': 'success'}";
+        }catch (Exception exception){
+            result = "{'result': 'error'}";
+        }
+        JSONObject jsonObject = JSONObject.parseObject(result);
+        String resultString = jsonObject.toJSONString();
+        return resultString;
+    }
 }
