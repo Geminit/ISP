@@ -8,9 +8,13 @@ package com.isp.entity;
 public class User {
 
     private Long id;
-    private String userName;
-    private String userPhone;
-    private String userPwd;
+    private String account;
+    private String username;
+    private Integer role;
+    private Integer status;
+    private String email;
+
+    private Role rolee;
 
     public Long getId() {
         return id;
@@ -20,27 +24,51 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getAccount() {
+        return account;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
-    public String getUserPhone() {
-        return userPhone;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserPwd() {
-        return userPwd;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Role getRolee() {
+        return rolee;
+    }
+
+    public void setRolee(Role rolee) {
+        this.rolee = rolee;
     }
 }

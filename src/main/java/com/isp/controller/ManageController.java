@@ -19,7 +19,7 @@ public class ManageController {
 
     //后台主页
     @RequestMapping("/index")
-    public  String index(Model model, HttpServletRequest request){
-        return "background_public";
+    public String index(Model model, HttpServletRequest request){
+        return "background_index";
     }
 }

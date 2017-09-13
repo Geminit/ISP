@@ -1,11 +1,13 @@
 package com.isp.service.impl;
 
 import com.isp.dao.UserDao;
-import com.isp.service.UserService;
 import com.isp.entity.User;
+import com.isp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Geminit
@@ -13,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Service
-@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
     
     @Autowired
@@ -23,4 +24,8 @@ public class UserServiceImpl implements UserService {
         return userDao.selectUserById(userId);
     }
 
+    public List<Object> getUserByPage(Map<String, Object> argsMap) {
+        List<Object> result = userDao.getUserByPage(argsMap);
+        return result;
+    }
 }
