@@ -23,6 +23,11 @@
         SELECT user.id, account, username, role.name, STATUS, email FROM USER, role WHERE USER.role = role.id
         and account = '${account}'
     </select>
+
+    <select id="getUserById" parameterType="java.lang.Integer" resultMap="UserBaseMap">
+        SELECT user.id, account, username, role.name, STATUS, email FROM USER, role WHERE USER.role = role.id
+        and user.id = ${id}
+    </select>
     
     <select id="getTotalNumber" resultType="java.lang.Integer">
         SELECT COUNT(id) FROM USER
@@ -32,4 +37,13 @@
         INSERT INTO USER (account, password, username, role, status, email) VALUE ('${account}','${password}',
         '${username}','${role}','${status}','${email}')
     </insert>
+
+    <update id="updateUser" parameterType="java.lang.String">
+        UPDATE USER SET account = '${account}', username = '${username}', role = '${role}',
+         status = '${status}', email = '${email}' WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM USER WHERE id = ${id}
+    </delete>
 </mapper>

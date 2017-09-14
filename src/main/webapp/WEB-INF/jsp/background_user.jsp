@@ -35,17 +35,17 @@
                                 data-target="#newModal">新增</button>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-warning">编辑</button>
+                        <button class="btn btn-warning" onclick="getCheckBoxEdit()">编辑</button>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-danger" onclick="getCheckBox()">删除</button>
+                        <button class="btn btn-danger" onclick="getCheckBoxDelete()">删除</button>
                     </div>
                 </div>
             </div>
             <%--表格--%>
             <div class="col-md-11" id="table-box">
                 <table class="table table-bordered" border="1" id="table-user">
-                    <tr class="table-bordered">
+                    <tr>
                         <td class="success"><label>编号</label></td>
                         <td class="success"></td>
                         <td class="success"><label>账号</label></td>
@@ -57,7 +57,7 @@
                     <c:forEach items="${user}" var="key" varStatus="status">
                         <tr class="table-bordered">
                             <td>${(currentpage-1) * 10 + status.index + 1}</td>
-                            <td><input type="radio"></td>
+                            <td><input type="checkbox" name="checkbox" value="${key.id}"></td>
                             <td>${key.account}</td>
                             <td>${key.username}</td>
                             <td>${key.rolee.name}</td>
@@ -75,7 +75,7 @@
                 </table>
             </div>
             <%--页数文本--%>
-            <div class="row" id="page-text">
+            <div id="page-text">
                 <div class="col-md-12">
                     <div class="col-md-2" id="page-text-div">
                         <a>总${total}条&nbsp;&nbsp;&nbsp;每页10条&nbsp;&nbsp;&nbsp;共${page}页</a>
@@ -161,6 +161,62 @@
                     </div>
                 </div>
             </div>
+
+            <%--编辑用户模态框--%>
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabelEdit">用户资料编辑</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>账号:  </label>
+                                        <input type="hidden" id="edituserid">
+                                        <input type="text" id="edituseraccount">
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>昵称: </label>
+                                        <input type="text" id="edituserusername">
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>角色: </label>
+                                        <select id="edituserrole">
+                                            <option value ="1">管理员</option>
+                                            <option value ="2">普通用户</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>状态: </label>
+                                        <select id="edituserstatus">
+                                            <option value ="0">停用</option>
+                                            <option value ="1">启用</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>邮箱: </label>
+                                        <input type="email" id="edituseremail">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="edituserbutton">更新</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
     </div>
     <jsp:include page="background_footer.jsp"></jsp:include>
@@ -227,19 +283,121 @@
                         var result = eval(data);
                         if(result['result']=='success'){
                             alert("数据插入成功");
+                            window.location.reload();
                         }else{
                             alert("数据插入失败");
+                            window.location.reload()
                         }
                     },
                 })
             })
         })
 
-        //获取勾选的CheckBox
-        function getCheckBox() {
-            $("input[name='checkbox'][checked]").each(function () {
-                alert(this.value);
+        //更新用户ajax请求
+        $(document).ready(function () {
+            $("#edituserbutton").click(function () {
+                htmlobj = $.ajax({
+                    url: "/user/updateUser",
+                    type: "post",
+                    scriptCharset: 'utf-8',
+                    dataType: 'json',
+                    data: {
+                        id: document.getElementById("edituserid").value,
+                        account: document.getElementById("edituseraccount").value,
+                        username: document.getElementById("edituserusername").value,
+                        role: document.getElementById("edituserrole").value,
+                        status: document.getElementById("edituserstatus").value,
+                        email: document.getElementById("edituseremail").value,
+                    },
+                    success: function (data) {
+                        var result = eval(data);
+                        if(result['result']=='success'){
+                            alert("数据修改成功");
+                            window.location.reload();
+                        }else{
+                            alert("数据修改失败");
+                            window.location.reload()
+                        }
+                    },
+                })
             })
+        })
+
+        //点击编辑操作
+        function getCheckBoxEdit() {
+            obj = document.getElementsByName("checkbox");
+            check_val = [];
+            var id;
+            for(k in obj){
+                if(obj[k].checked)
+                    check_val.push(obj[k].value);
+            }
+            if(check_val.length == 1){
+                //弹出模态框
+                htmlobj = $.ajax({
+                    url: "/user/searchById",
+                    type: "post",
+                    scriptCharset: 'utf-8',
+                    dataType: 'json',
+                    data: {
+                        id: check_val.pop(),
+                    },
+                    success: function (data) {
+                        $('#editModal').modal('show');
+                        dataArray = eval(data);
+                        var role;
+                        if(dataArray[0]['rolee']['name']=='管理员'){
+                            role = 1;
+                        }else{
+                            role = 2;
+                        }
+                        document.getElementById("edituserid").value = dataArray[0]['id'];
+                        document.getElementById("edituseraccount").value = dataArray[0]['account'];
+                        document.getElementById("edituserusername").value = dataArray[0]['username'];
+                        document.getElementById("edituserrole").value = role;
+                        document.getElementById("edituserstatus").value = dataArray[0]['status'];
+                        document.getElementById("edituseremail").value = dataArray[0]['email'];
+                    },
+                })
+            }else {
+                alert("请选择仅选择一个");
+                return 0;
+            }
+        }
+
+        //点击删除操作
+        function getCheckBoxDelete() {
+            obj = document.getElementsByName("checkbox");
+            check_val = [];
+            var id;
+            for(k in obj){
+                if(obj[k].checked)
+                    check_val.push(obj[k].value);
+            }
+            if(check_val.length == 1){
+                htmlobj = $.ajax({
+                    url: "/user/deleteUser",
+                    type: "post",
+                    scriptCharset: 'utf-8',
+                    dataType: 'json',
+                    data: {
+                        id: check_val.pop(),
+                    },
+                    success: function (data) {
+                        var result = eval(data);
+                        if(result['result']=='success'){
+                            alert("数据删除成功");
+                            window.location.reload();
+                        }else{
+                            alert("数据删除失败");
+                            window.location.reload()
+                        }
+                    },
+                })
+            }else {
+                alert("请选择仅选择一个");
+                return 0;
+            }
         }
     </script>
 </body>

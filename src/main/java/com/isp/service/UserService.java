@@ -14,7 +14,13 @@ public interface UserService {
 
     List<Object> getUserByAccount(String account);
 
+    List<Object> getUserById(Integer id);
+
     Integer getTotalNumber();
 
     void insertUser(Map<String, Object> argsMap);
+
+    void updateUser(Map<String, Object> argsMap);
+
+    void deleteById(Integer id);
 }

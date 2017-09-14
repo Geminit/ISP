@@ -29,11 +29,24 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    public List<Object> getUserById(Integer id) {
+        List<Object> result = userDao.getUserById(id);
+        return result;
+    }
+
     public Integer getTotalNumber() {
         return userDao.getTotalNumber();
     }
 
     public void insertUser(Map<String, Object> argsMap) {
         userDao.insertUser(argsMap);
+    }
+
+    public void updateUser(Map<String, Object> argsMap) {
+        userDao.updateUser(argsMap);
+    }
+
+    public void deleteById(Integer id) {
+        userDao.deleteById(id);
     }
 }

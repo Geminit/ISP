@@ -18,7 +18,13 @@ public interface UserDao {
 
     List<Object> getUserByAccount(@Param("account")String account);
 
+    List<Object> getUserById(@Param("id")Integer id);
+
     Integer getTotalNumber();
 
     void insertUser(Map<String, Object> argsMap);
+
+    void updateUser(Map<String, Object> argsMap);
+
+    void deleteById(@Param("id")Integer id);
 }

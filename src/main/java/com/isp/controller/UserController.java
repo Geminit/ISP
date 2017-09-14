@@ -69,6 +69,18 @@ public class UserController {
         return resultString;
     }
 
+    //用户查询（id）
+    @RequestMapping("/searchById")
+    @ResponseBody
+    public String searchById(HttpServletRequest request){
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<Object> list = userService.getUserById(id);
+        JSONArray resultJson = (JSONArray) JSONArray.toJSON(list);
+        String resultString = resultJson.toString();
+        System.out.println(resultString);
+        return resultString;
+    }
+
     //新建用户
     @RequestMapping("/insertUser")
     @ResponseBody
@@ -91,6 +103,47 @@ public class UserController {
         String result;
         try {
             userService.insertUser(argsMap);
+            result = "{'result': 'success'}";
+        }catch (Exception exception){
+            result = "{'result': 'error'}";
+        }
+        JSONObject jsonObject = JSONObject.parseObject(result);
+        String resultString = jsonObject.toJSONString();
+        return resultString;
+    }
+
+    //更新用户信息
+    @RequestMapping("/updateUser")
+    @ResponseBody
+    public String updateUser(HttpServletRequest request){
+        Map<String, Object> argsMap = new HashMap<String, Object>();
+        argsMap.put("id", request.getParameter("id"));
+        argsMap.put("account", request.getParameter("account"));
+        argsMap.put("username", request.getParameter("username"));
+        argsMap.put("role", request.getParameter("role"));
+        argsMap.put("status", request.getParameter("status"));
+        argsMap.put("email", request.getParameter("email"));
+        String result;
+        try {
+            userService.updateUser(argsMap);
+            result = "{'result': 'success'}";
+        }catch (Exception exception){
+            System.out.println(exception);
+            result = "{'result': 'error'}";
+        }
+        JSONObject jsonObject = JSONObject.parseObject(result);
+        String resultString = jsonObject.toJSONString();
+        return resultString;
+    }
+
+    //通过ID删除用户
+    @RequestMapping("/deleteUser")
+    @ResponseBody
+    public String deleteById(HttpServletRequest request){
+        int id = Integer.parseInt(request.getParameter("id"));
+        String result;
+        try {
+            userService.deleteById(id);
             result = "{'result': 'success'}";
         }catch (Exception exception){
             result = "{'result': 'error'}";
