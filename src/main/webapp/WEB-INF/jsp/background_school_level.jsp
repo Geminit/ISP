@@ -23,7 +23,7 @@
             <div class="form-inline" id="input-box">
                 <div class="form-group">
                     <label>账号: </label>
-                    <input type="text" class="form-control" id="useraccount">
+                    <input type="text" class="form-control" id="name">
                 </div>
                 <button class="btn btn-primary" id="search-btn">搜索</button>
             </div>
@@ -48,28 +48,13 @@
                     <tr>
                         <td class="success"><label>编号</label></td>
                         <td class="success"></td>
-                        <td class="success"><label>账号</label></td>
-                        <td class="success"><label>用户名</label></td>
-                        <td class="success"><label>角色</label></td>
-                        <td class="success"><label>状态</label></td>
-                        <td class="success"><label>邮箱</label></td>
+                        <td class="success"><label>学校层次</label></td>
                     </tr>
                     <c:forEach items="${user}" var="key" varStatus="status">
                         <tr class="table-bordered">
                             <td>${(currentpage-1) * 10 + status.index + 1}</td>
                             <td><input type="checkbox" name="checkbox" value="${key.id}"></td>
-                            <td>${key.account}</td>
-                            <td>${key.username}</td>
-                            <td>${key.rolee.name}</td>
-                            <c:choose>
-                                <c:when test="${key.status==1}">
-                                    <td style="color: lightblue">启用</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td style="color: lightcoral;">停用</td>
-                                </c:otherwise>
-                            </c:choose>
-                            <td>${key.email}</td>
+                            <td>${key.name}</td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -88,13 +73,13 @@
                                     <li class="disabled" id="previous"><a href="#">上一页</a></li>
                                 </c:if>
                                 <c:if test="${previous>=1}">
-                                    <li><a href="/user/index?page=${previous}">上一页</a></li>
+                                    <li><a href="/schoollevel/index?page=${previous}">上一页</a></li>
                                 </c:if>
                                 <c:if test="${last > page}">
                                     <li class="disabled" id="last"><a href="#">下一页</a></li>
                                 </c:if>
                                 <c:if test="${last <= page}">
-                                    <li><a href="/user/index?page=${last}">下一页</a></li>
+                                    <li><a href="/schoollevel/index?page=${last}">下一页</a></li>
                                 </c:if>
                             </ul>
                         </nav>
@@ -109,54 +94,18 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">新用户注册</h4>
+                            <h4 class="modal-title" id="myModalLabel">新增学校层次</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <label>账号:  </label>
-                                    <input type="text" id="newuseraccount">
-                                </div>
-                            </div>
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <label>密码:  </label>
-                                    <input type="password" id="newuserpassword">
-                                </div>
-                            </div>
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <label>昵称: </label>
-                                    <input type="text" id="newuserusername">
-                                </div>
-                            </div>
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <label>角色: </label>
-                                    <select id="newuserrole">
-                                        <option value ="1">管理员</option>
-                                        <option value ="2">普通用户</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <label>状态: </label>
-                                    <select id="newuserstatus">
-                                        <option value ="0">停用</option>
-                                        <option value ="1">启用</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-inline">
-                                <div class="form-group">
-                                    <label>邮箱: </label>
-                                    <input type="email" id="newuseremail">
+                                    <label>学校层次:  </label>
+                                    <input type="text" id="newschoollevel">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="newuserbutton">新建</button>
+                            <button type="button" class="btn btn-primary" id="newschoollevelbutton">新建</button>
                         </div>
                     </div>
                 </div>
@@ -170,49 +119,19 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                <h4 class="modal-title" id="myModalLabelEdit">用户资料编辑</h4>
+                                <h4 class="modal-title" id="myModalLabelEdit">学校层次资料编辑</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label>账号:  </label>
-                                        <input type="hidden" id="edituserid">
-                                        <input type="text" id="edituseraccount">
-                                    </div>
-                                </div>
-                                <div class="form-inline">
-                                    <div class="form-group">
-                                        <label>昵称: </label>
-                                        <input type="text" id="edituserusername">
-                                    </div>
-                                </div>
-                                <div class="form-inline">
-                                    <div class="form-group">
-                                        <label>角色: </label>
-                                        <select id="edituserrole">
-                                            <option value ="1">管理员</option>
-                                            <option value ="2">普通用户</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-inline">
-                                    <div class="form-group">
-                                        <label>状态: </label>
-                                        <select id="edituserstatus">
-                                            <option value ="0">停用</option>
-                                            <option value ="1">启用</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-inline">
-                                    <div class="form-group">
-                                        <label>邮箱: </label>
-                                        <input type="email" id="edituseremail">
+                                        <label>学校层次:  </label>
+                                        <input type="hidden" id="editschoollevelid">
+                                        <input type="text" id="editschoollevel">
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="edituserbutton">更新</button>
+                                <button type="button" class="btn btn-primary" id="editschoollevelbutton">更新</button>
                             </div>
                         </div>
                     </div>
@@ -226,35 +145,26 @@
         //搜索按钮ajax请求
         $(document).ready(function () {
             $("#search-btn").click(function () {
-                var text_value = document.getElementById("useraccount").value
+                var text_value = document.getElementById("name").value
                 if(text_value == ""){
                     window.location.reload();
                 }else{
                     htmlobj = $.ajax({
-                        url: "/user/searchByAccount",
+                        url: "/schoollevel/searchByName",
                         type: "post",
                         scriptCharset: 'utf-8',
                         dataType: 'json',
                         data: {
-                            account: document.getElementById("useraccount").value
+                            name: text_value
                         },
                         success: function (data) {
+                            console.log(data);
                             dataArray = eval(data);
-                            var status = dataArray[0]['status'];
-                            if(status==1){
-                                status = "启用";
-                            }else {
-                                status = "停用";
-                            }
                             var html = '<table class="table table-bordered" border="1" id="table-user">' +
                                 '<tr class="table-bordered"><td class="success"><label>编号</label></td>' +
-                                '<td class="success"></td><td class="success"><label>账号</label></td><td class="success">' +
-                                '<label>用户名</label></td><td class="success"><label>角色</label></td><td class="success">' +
-                                '<label>状态</label></td><td class="success"><label>邮箱</label></td></tr>';
+                                '<td class="success"></td><td class="success"><label>学校层次</label></td>';
                             html += '<tr class="table-bordered"><td>1</td><td><input type="checkbox"></td>' +
-                                '<td>'+dataArray[0]['account']+'</td><td>'+dataArray[0]['username']+'</td>' +
-                                '<td>'+dataArray[0]['rolee']['name']+'</td><td>'+status+'</td>' +
-                                '<td>'+dataArray[0]['email']+'</td>';
+                                '<td>'+dataArray[0]['name']+'</td>';
                             document.getElementById('table-user').innerHTML = html;
                             document.getElementById("page-text").innerHTML = "";
                         },
@@ -265,19 +175,14 @@
 
         //新建用户ajax请求
         $(document).ready(function () {
-            $("#newuserbutton").click(function () {
+            $("#newschoollevelbutton").click(function () {
                 htmlobj = $.ajax({
-                    url: "/user/insertUser",
+                    url: "/schoollevel/insertSchoolLevel",
                     type: "post",
                     scriptCharset: 'utf-8',
                     dataType: 'json',
                     data: {
-                        account: document.getElementById("newuseraccount").value,
-                        password: hex_md5(document.getElementById("newuserpassword").value),
-                        username: document.getElementById("newuserusername").value,
-                        role: document.getElementById("newuserrole").value,
-                        status: document.getElementById("newuserstatus").value,
-                        email: document.getElementById("newuseremail").value,
+                        name: document.getElementById("newschoollevel").value,
                     },
                     success: function (data) {
                         var result = eval(data);
@@ -295,19 +200,15 @@
 
         //更新用户ajax请求
         $(document).ready(function () {
-            $("#edituserbutton").click(function () {
+            $("#editschoollevelbutton").click(function () {
                 htmlobj = $.ajax({
-                    url: "/user/updateUser",
+                    url: "/schoollevel/updateSchoolLevel",
                     type: "post",
                     scriptCharset: 'utf-8',
                     dataType: 'json',
                     data: {
-                        id: document.getElementById("edituserid").value,
-                        account: document.getElementById("edituseraccount").value,
-                        username: document.getElementById("edituserusername").value,
-                        role: document.getElementById("edituserrole").value,
-                        status: document.getElementById("edituserstatus").value,
-                        email: document.getElementById("edituseremail").value,
+                        id: document.getElementById("editschoollevelid").value,
+                        name: document.getElementById("editschoollevel").value,
                     },
                     success: function (data) {
                         var result = eval(data);
@@ -335,7 +236,7 @@
             if(check_val.length == 1){
                 //弹出模态框
                 htmlobj = $.ajax({
-                    url: "/user/searchById",
+                    url: "/schoollevel/searchById",
                     type: "post",
                     scriptCharset: 'utf-8',
                     dataType: 'json',
@@ -345,18 +246,8 @@
                     success: function (data) {
                         $('#editModal').modal('show');
                         dataArray = eval(data);
-                        var role;
-                        if(dataArray[0]['rolee']['name']=='管理员'){
-                            role = 1;
-                        }else{
-                            role = 2;
-                        }
-                        document.getElementById("edituserid").value = dataArray[0]['id'];
-                        document.getElementById("edituseraccount").value = dataArray[0]['account'];
-                        document.getElementById("edituserusername").value = dataArray[0]['username'];
-                        document.getElementById("edituserrole").value = role;
-                        document.getElementById("edituserstatus").value = dataArray[0]['status'];
-                        document.getElementById("edituseremail").value = dataArray[0]['email'];
+                        document.getElementById("editschoollevelid").value = dataArray[0]['id'];
+                        document.getElementById("editschoollevel").value = dataArray[0]['name'];
                     },
                 })
             }else {
@@ -376,7 +267,7 @@
             }
             if(check_val.length == 1){
                 htmlobj = $.ajax({
-                    url: "/user/deleteUser",
+                    url: "/schoollevel/deleteSchoolLevel",
                     type: "post",
                     scriptCharset: 'utf-8',
                     dataType: 'json',

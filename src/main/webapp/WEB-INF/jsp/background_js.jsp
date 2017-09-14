@@ -14,4 +14,5 @@
 <script src="/js/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="/js/jquery-jvectormap-world-mill-en.js"></script>
 <script src="/js/jquery.slimscroll.min.js"></script>
+<script src="/js/md5.js"></script>
 <script src="/js/demo.js"></script>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.SchoolLevelDao">
+
+    <select id="getSchoolLevelByPage" parameterType="java.lang.String" resultType="com.isp.entity.SchoolLevel">
+        SELECT * FROM school_level ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM school_level
+    </select>
+
+    <select id="getSchoolLevelByName" parameterType="java.lang.String" resultType="com.isp.entity.SchoolLevel">
+        SELECT * FROM school_level WHERE name = '${name}'
+    </select>
+
+    <select id="getSchoolLevelById" parameterType="java.lang.Integer" resultType="com.isp.entity.SchoolLevel">
+        SELECT * FROM school_level WHERE id = ${id}
+    </select>
+
+    <insert id="insertSchoolLevel" parameterType="java.lang.String">
+        INSERT INTO school_level (name) VALUE ('${name}')
+    </insert>
+
+    <update id="updateSchoolLevel" parameterType="java.lang.Integer">
+        UPDATE school_level SET name = '${name}' WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM school_level WHERE id = ${id}
+    </delete>
+</mapper>

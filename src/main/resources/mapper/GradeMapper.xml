@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.GradeDao">
+
+    <select id="getGradeByPage" parameterType="java.lang.String" resultType="com.isp.entity.Grade">
+        SELECT * FROM grade ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM grade
+    </select>
+
+    <select id="getGradeByName" parameterType="java.lang.String" resultType="com.isp.entity.Grade">
+        SELECT * FROM grade WHERE name = '${name}'
+    </select>
+
+    <select id="getGradeById" parameterType="java.lang.Integer" resultType="com.isp.entity.Grade">
+        SELECT * FROM grade WHERE id = ${id}
+    </select>
+
+    <insert id="insertGrade" parameterType="java.lang.String">
+        INSERT INTO grade (name) VALUE ('${name}')
+    </insert>
+
+    <update id="updateGrade" parameterType="java.lang.Integer">
+        UPDATE grade SET name = '${name}' WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM grade WHERE id = ${id}
+    </delete>
+</mapper>
