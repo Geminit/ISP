@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.SchoolDao">
+
+    <resultMap id="BaseResultMap" type="com.isp.entity.School" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="info" property="info" jdbcType="VARCHAR" />
+        <result column="region_id" property="region_id" jdbcType="INTEGER" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="image" property="schoolImg" jdbcType="VARCHAR" />
+        <association property="license" javaType="com.isp.entity.License">
+            <result column="id" property="id"></result>
+            <result column="school_id" property="school_id"></result>
+            <result column="content" property="content"></result>
+            <result column="kind" property="kind"></result>
+            <result column="date" property="date"></result>
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        s.id, name, level, info, region_id, address, image, l.id, school_id, content, kind, date
+    </sql>
+
+    <select id="getNewSchool" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM school AS s
+        LEFT JOIN license AS l ON l.school_id = s.id
+        WHERE l.kind = 1
+        ORDER BY l.id DESC;
+    </select>
+
+    <select id="getModifiedSchool" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM school AS s
+        LEFT JOIN license AS l ON l.school_id = s.id
+        WHERE l.kind = 2
+        ORDER BY l.id DESC;
+    </select>
+
+    <select id="getEndingSchool" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM school AS s
+        LEFT JOIN license AS l ON l.school_id = s.id
+        WHERE l.kind = 3
+        ORDER BY l.id DESC;
+    </select>
+
+    <resultMap id="SchoolMap" type="com.isp.entity.School" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="info" property="info" jdbcType="VARCHAR" />
+        <result column="region_id" property="region_id" jdbcType="INTEGER" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="image" property="schoolImg" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getSchoolById" resultMap="SchoolMap">
+        SELECT
+        id, name, level, info, region_id, address, image
+        FROM school
+        WHERE id = ${schoolId}
+    </select>
+
+    <resultMap id="LicenseMap" type="com.isp.entity.License" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="school_id" property="school_id" jdbcType="INTEGER" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="kind" property="kind" jdbcType="INTEGER" />
+        <result column="date" property="date" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getLicenseById" resultMap="LicenseMap">
+        SELECT
+        id, school_id, content, kind, date
+        FROM license
+        WHERE id = ${licenseId}
+    </select>
+
+</mapper>
