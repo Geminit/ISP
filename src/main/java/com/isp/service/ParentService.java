@@ -1,5 +1,6 @@
 package com.isp.service;
 
+import com.isp.entity.NoticeGroupByConcer;
 import com.isp.entity.Parent;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,6 +17,8 @@ public interface ParentService {
     List<Parent> getParentByName(String parent_name);
 
     List<Parent> getParentById(Integer id);
+
+    List<NoticeGroupByConcer> getParenteGroupByConcer();
 
     Integer getTotalNumber();                                                   //获取总共页数
 

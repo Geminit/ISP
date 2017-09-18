@@ -42,6 +42,18 @@ public class ClassServiceImpl implements ClassService {
         return classDao.getTotalNumber();
     }
 
+    public Integer getGraduateNumber() {
+        return classDao.getGraduateNumber();
+    }
+
+    public Integer getGraduateTotalNumber() {
+        return classDao.getGraduateTotalNumber();
+    }
+
+    public Double averageNumber() {
+        return classDao.averageNumber();
+    }
+
     public void insertClass(Map<String, Object> argsMap) {
         classDao.insertClass(argsMap);
     }

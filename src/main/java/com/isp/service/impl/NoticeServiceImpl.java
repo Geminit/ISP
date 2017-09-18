@@ -2,6 +2,7 @@ package com.isp.service.impl;
 
 import com.isp.dao.NoticeDao;
 import com.isp.entity.Notice;
+import com.isp.entity.NoticeGroupByConcer;
 import com.isp.service.NoticeService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class NoticeServiceImpl implements NoticeService {
 
     public List<Notice> getNoticeById(Integer id) {
         List<Notice> list = noticeDao.getNoticeById(id);
+        return list;
+    }
+
+    public List<NoticeGroupByConcer> getNoticeGroupByMonth(Integer year) {
+        List<NoticeGroupByConcer> list = noticeDao.getNoticeGroupByMonth(year);
         return list;
     }
 

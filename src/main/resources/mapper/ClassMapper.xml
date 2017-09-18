@@ -33,6 +33,18 @@
         SELECT COUNT(id) FROM class
     </select>
 
+    <select id="getGraduateNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select sum(graduate_number) from class where graduate_number != -1
+    </select>
+
+    <select id="getGraduateTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select sum(number) from class where graduate_number != -1
+    </select>
+
+    <select id="averageNumber" parameterType="java.lang.String" resultType="java.lang.Double">
+        select AVG(number) from class
+    </select>
+
     <select id="getClassByName" parameterType="java.lang.String" resultType="com.isp.entity.Class">
         SELECT * FROM class WHERE name = '${name}'
     </select>

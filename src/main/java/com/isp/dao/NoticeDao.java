@@ -1,6 +1,7 @@
 package com.isp.dao;
 
 import com.isp.entity.Notice;
+import com.isp.entity.NoticeGroupByConcer;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,8 @@ public interface NoticeDao {
     List<Notice> getNoticeByName(@Param("name") String name);
 
     List<Notice> getNoticeById(@Param("id") Integer id);
+
+    List<NoticeGroupByConcer> getNoticeGroupByMonth(@Param("year") Integer year);
 
     Integer getTotalNumber();
 

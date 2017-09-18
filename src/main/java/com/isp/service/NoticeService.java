@@ -1,6 +1,7 @@
 package com.isp.service;
 
 import com.isp.entity.Notice;
+import com.isp.entity.NoticeGroupByConcer;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public interface NoticeService {
     List<Notice> getNoticeByName(String name);
 
     List<Notice> getNoticeById(Integer id);
+
+    List<NoticeGroupByConcer> getNoticeGroupByMonth(Integer year);
 
     Integer getTotalNumber();                                                   //获取总共页数
 

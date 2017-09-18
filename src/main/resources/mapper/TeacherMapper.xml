@@ -31,8 +31,22 @@
         AND teacher.title = title.id ORDER BY id limit ${start}, ${end}
     </select>
 
+    <select id="getTeacherGroupByMonth" resultType="com.isp.entity.TeacherGroupByMonth">
+        select count(id) as number, MONTH(time) as month from teacher GROUP BY MONTH(time)
+    </select>
+
     <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
         SELECT COUNT(id) FROM teacher
+    </select>
+
+    <select id="getReallyTeacherNumber" resultType="java.lang.Integer">
+        SELECT COUNT(teacher.id) FROM teacher, subject where teacher.subject = subject.id and subject.name != '后勤'
+    </select>
+
+    <select id="getPrimaryTeacherNumber" resultType="java.lang.Integer">
+        SELECT count(teacher.id) FROM teacher, school, school_level, `subject` WHERE teacher.school = school.id
+        AND school. LEVEL = school_level.id AND school_level. NAME = "小学" AND teacher. SUBJECT = `subject`.id
+        AND `subject`. NAME != "后勤"
     </select>
 
     <select id="getTeacherByName" parameterType="java.lang.String" resultMap="TeacherBaseMap">

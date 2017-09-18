@@ -21,6 +21,12 @@ public interface ClassService {
 
     Integer getTotalNumber();                                                   //获取总共页数
 
+    Integer getGraduateNumber();                                                //毕业人数
+
+    Integer getGraduateTotalNumber();                                           //升学人数
+
+    Double averageNumber();                                                    //平均班级人数
+
     void insertClass(Map<String, Object> argsMap);
 
     void updateClass(Map<String, Object> argsMap);

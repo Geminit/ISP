@@ -1,6 +1,7 @@
 package com.isp.service;
 
 import com.isp.entity.Teacher;
+import com.isp.entity.TeacherGroupByMonth;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,7 +20,13 @@ public interface TeacherService {
 
     List<Teacher> getTeacherById(Integer id);
 
+    List<TeacherGroupByMonth> getTeacherGroupByMonth();
+
     Integer getTotalNumber();                                                   //获取总共页数
+
+    Integer getReallyTeacherNumber();
+
+    Integer getPrimaryTeacherNumber();
 
     void insertTeacher(Map<String, Object> argsMap);
 

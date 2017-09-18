@@ -6,6 +6,9 @@
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="info" property="info" jdbcType="VARCHAR"/>
+        <result column="englishName" property="englishName" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="establishDate" property="establishDate" jdbcType="DATE"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="image" property="image" jdbcType="VARCHAR"/>
         <result column="isGood" property="isGood" jdbcType="NUMERIC"/>
@@ -22,8 +25,8 @@
     </select>
 
     <select id="getSchoolByPage" parameterType="java.lang.String" resultMap="SchoolBaseMap">
-        SELECT school.id, school.name, school_level.name as levelname, info, region.name as regionname,
-        address, image, isGood FROM school, school_level, region where level = school_level.id and
+        SELECT school.id, school.name, school_level.name as levelname, info, school.englishName, school.phone, school.establishDate,
+        region.name as regionname, address, image, isGood FROM school, school_level, region where level = school_level.id and
         region_id = region.id ORDER BY id limit ${start}, ${end}
     </select>
 
@@ -32,8 +35,8 @@
     </select>
 
     <select id="getSchoolByName" parameterType="java.lang.String" resultMap="SchoolBaseMap">
-        SELECT school.id, school.name, school_level.name as levelname, info, region.name as regionname,
-        address, image, isGood FROM school, school_level, region where level = school_level.id and
+        SELECT school.id, school.name, school_level.name as levelname, info, school.englishName, school.phone, school.establishDate,
+        region.name as regionname, address, image, isGood FROM school, school_level, region where level = school_level.id and
         region_id = region.id and school.name = '${name}'
     </select>
 
@@ -41,13 +44,21 @@
         SELECT * FROM school WHERE id = ${id}
     </select>
 
+    <select id="getSchoolName" resultType="com.isp.entity.School">
+        SELECT DISTINCT (name) FROM school
+    </select>
+
+    <select id="primaryStudentBySchool" resultType="com.isp.entity.PrimaryStudentBySchool">
+        SELECT number, school.`name` FROM class, school WHERE class.school = school.id GROUP BY school
+    </select>
+
     <insert id="insertSchool" parameterType="java.lang.String">
-        INSERT INTO school (name, level, info, region_id, address, image, isGood)
-        VALUE ('${name}',${level},'${info}',${region_id},'${address}','${image}',${isGood})
+        INSERT INTO school (name, level, info, englishName, phone, establishDate, region_id, address, image, isGood)
+        VALUE ('${name}',${level},'${info}','${englishName}','${phone}','${establishDate}',${region_id},'${address}','${image}',${isGood})
     </insert>
 
     <update id="updateSchool" parameterType="java.lang.Integer">
-        UPDATE school SET name = '${name}', level = ${level}, info = '${info}',
+        UPDATE school SET name = '${name}', level = ${level}, englishName = '${englishName}', phone = '${phone}', establishDate = '${establishDate}', info = '${info}',
         region_id = ${region_id}, address = '${address}', image = '${image}', isGood = ${isGood} WHERE id = ${id}
     </update>
 

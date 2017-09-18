@@ -1,5 +1,6 @@
 package com.isp.dao;
 
+import com.isp.entity.PrimaryStudentBySchool;
 import com.isp.entity.School;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,10 @@ public interface SchoolDao {
     List<School> getSchoolByName(@Param("name") String name);
 
     List<School> getSchoolById(@Param("id") Integer id);
+
+    List<School> getSchoolName();
+
+    List<PrimaryStudentBySchool> primaryStudentBySchool();
 
     Integer getTotalNumber();
 

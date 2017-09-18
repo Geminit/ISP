@@ -2,6 +2,7 @@ package com.isp.service.impl;
 
 import com.isp.dao.TeacherDao;
 import com.isp.entity.Teacher;
+import com.isp.entity.TeacherGroupByMonth;
 import com.isp.service.TeacherService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,40 +18,53 @@ import java.util.Map;
 public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
-    private TeacherDao gradeDao;
+    private TeacherDao teacherDao;
 
     public List<Teacher> getTeacherAll() {
-        return gradeDao.getTeacherAll();
+        return teacherDao.getTeacherAll();
     }
 
     public List<Teacher> getTeacherByPage(Map<String, Object> argsMap) {
-        List<Teacher> list = gradeDao.getTeacherByPage(argsMap);
+        List<Teacher> list = teacherDao.getTeacherByPage(argsMap);
         return list;
     }
 
     public List<Teacher> getTeacherByName(String name) {
-        List<Teacher> list = gradeDao.getTeacherByName(name);
+        List<Teacher> list = teacherDao.getTeacherByName(name);
         return list;
     }
 
     public List<Teacher> getTeacherById(Integer id) {
-        List<Teacher> list = gradeDao.getTeacherById(id);
+        List<Teacher> list = teacherDao.getTeacherById(id);
+        return list;
+    }
+
+    public List<TeacherGroupByMonth> getTeacherGroupByMonth() {
+        List<TeacherGroupByMonth> list = teacherDao.getTeacherGroupByMonth();
         return list;
     }
 
     public Integer getTotalNumber() {
-        return gradeDao.getTotalNumber();
+        return teacherDao.getTotalNumber();
+    }
+
+    public Integer getReallyTeacherNumber() {
+        return teacherDao.getReallyTeacherNumber();
+    }
+
+    public Integer getPrimaryTeacherNumber() {
+        return teacherDao.getPrimaryTeacherNumber();
     }
 
     public void insertTeacher(Map<String, Object> argsMap) {
-        gradeDao.insertTeacher(argsMap);
+        teacherDao.insertTeacher(argsMap);
     }
 
     public void updateTeacher(Map<String, Object> argsMap) {
-        gradeDao.updateTeacher(argsMap);
+        teacherDao.updateTeacher(argsMap);
     }
 
     public void deleteById(@Param("id") Integer id) {
-        gradeDao.deleteById(id);
+        teacherDao.deleteById(id);
     }
 }

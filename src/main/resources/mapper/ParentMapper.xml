@@ -18,6 +18,10 @@
         SELECT * FROM parent WHERE id = ${id}
     </select>
 
+    <select id="getParenteGroupByConcer" resultType="com.isp.entity.NoticeGroupByConcer">
+        select count(id) as number, concern from parent GROUP BY concern
+    </select>
+
     <insert id="insertParent" parameterType="java.lang.String">
         INSERT INTO parent (parent_name, concern) VALUE ('${parent_name}', '${concern}')
     </insert>

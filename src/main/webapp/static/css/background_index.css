@@ -1,0 +1,15 @@
+.row{
+    margin: auto;
+    position: relative;
+    top: 10px;
+}
+
+.glyphicon{
+    font-size: 50px;
+    color: deepskyblue;
+}
+
+.panel-body{
+    margin: 0px;
+    padding: 0px;
+}

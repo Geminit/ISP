@@ -1,5 +1,6 @@
 package com.isp.service;
 
+import com.isp.entity.PrimaryStudentBySchool;
 import com.isp.entity.School;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,6 +19,10 @@ public interface SchoolService {
     List<School> getSchoolByName(String name);
 
     List<School> getSchoolById(Integer id);
+
+    List<School> getSchoolName();
+
+    List<PrimaryStudentBySchool> primaryStudentBySchool();
 
     Integer getTotalNumber();                                                   //获取总共页数
 

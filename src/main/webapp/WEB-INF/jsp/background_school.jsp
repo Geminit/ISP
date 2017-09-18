@@ -51,6 +51,9 @@
                         <td class="success"><label>学校</label></td>
                         <td class="success"><label>层次</label></td>
                         <%--<td class="success"><label>信息</label></td>--%>
+                        <td class="success"><label>英文名</label></td>
+                        <td class="success"><label>电话</label></td>
+                        <td class="success"><label>建立日期</label></td>
                         <td class="success"><label>地区</label></td>
                         <td class="success"><label>地址</label></td>
                         <%--<td class="success"><label>图片</label></td>--%>
@@ -62,6 +65,9 @@
                             <td><input type="checkbox" name="checkbox" value="${key.id}"></td>
                             <td>${key.name}</td>
                             <td>${key.schoolLevel.name}</td>
+                            <td>${key.englishName}</td>
+                            <td>${key.phone}</td>
+                            <td>${key.establishDate}</td>
                             <%--<td>${key.info}</td>--%>
                             <td>${key.region.name}</td>
                             <td>${key.address}</td>
@@ -118,13 +124,13 @@
                         <div class="modal-body">
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <label>学校:  </label>
+                                    <label>学&#8195;&#8195;校:  </label>
                                     <input type="text" id="newname">
                                 </div>
                             </div>
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <label>层级:  </label>
+                                    <label>层&#8195;&#8195;级:  </label>
                                     <select id="newlevel">
                                         <c:forEach items="${level}" var="key">
                                             <option value="${key.id}">${key.name}</option>
@@ -134,13 +140,31 @@
                             </div>
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <label>信息:  </label>
+                                    <label>信&#8195;&#8195;息:  </label>
                                     <input type="text" id="newinfo">
                                 </div>
                             </div>
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <label>区域:  </label>
+                                    <label>英文名:&#8195;  </label>
+                                    <input type="text" id="newenglishName">
+                                </div>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label>电&#8195;&#8195;话:  </label>
+                                    <input type="text" id="newphone">
+                                </div>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label>建立日期:  </label>
+                                    <input type="date" id="newestablishDate">
+                                </div>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label>区&#8195;&#8195;域:  </label>
                                     <select id="newregion_id">
                                         <c:forEach items="${region}" var="key">
                                             <option value="${key.id}">${key.name}</option>
@@ -150,19 +174,19 @@
                             </div>
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <label>地址:  </label>
+                                    <label>地&#8195;&#8195;址:  </label>
                                     <input type="text" id="newaddress">
                                 </div>
                             </div>
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <label>图片:  </label>
+                                    <label>图&#8195;&#8195;片:  </label>
                                     <input type="text" id="newimage">
                                 </div>
                             </div>
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <label>名校:  </label>
+                                    <label>名&#8195;&#8195;校:  </label>
                                     <select id="newisGood">
                                         <option value="0">否</option>
                                         <option value="1">是</option>
@@ -190,14 +214,14 @@
                             <div class="modal-body">
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label>学校:  </label>
+                                        <label>学&#8195;&#8195;校:  </label>
                                         <input type="hidden" id="editid">
                                         <input type="text" id="editname">
                                     </div>
                                 </div>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label>层级:  </label>
+                                        <label>层&#8195;&#8195;级:  </label>
                                         <select id="editlevel">
                                             <c:forEach items="${level}" var="key">
                                                 <option value="${key.id}">${key.name}</option>
@@ -207,13 +231,31 @@
                                 </div>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label>信息:  </label>
+                                        <label>信&#8195;&#8195;息:  </label>
                                         <input type="text" id="editinfo">
                                     </div>
                                 </div>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label>区域:  </label>
+                                        <label>英文名:&#8195;  </label>
+                                        <input type="text" id="editenglishName">
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>电&#8195;&#8195;话:  </label>
+                                        <input type="text" id="editphone">
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>建立日期:  </label>
+                                        <input type="date" id="editestablishDate">
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>区&#8195;&#8195;域:  </label>
                                         <select id="editregion_id">
                                             <c:forEach items="${region}" var="key">
                                                 <option value="${key.id}">${key.name}</option>
@@ -223,19 +265,19 @@
                                 </div>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label>地址:  </label>
+                                        <label>地&#8195;&#8195;址:  </label>
                                         <input type="text" id="editaddress">
                                     </div>
                                 </div>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label>图片:  </label>
+                                        <label>图&#8195;&#8195;片:  </label>
                                         <input type="text" id="editimage">
                                     </div>
                                 </div>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label>名校:  </label>
+                                        <label>名&#8195;&#8195;校:  </label>
                                         <select id="editisGood">
                                             <option value="0">否</option>
                                             <option value="1">是</option>
@@ -279,17 +321,22 @@
                             }else {
                                 isGood = "否";
                             }
+                            var date = new Date(dataArray[0]['establishDate']);
                             var html = '<td class="success"><label>编号</label></td>' +
                                 '<td class="success"><label></label></td>' +
                                 '<td class="success"><label>学校</label></td>' +
                                 '<td class="success"><label>层次</label></td>' +
+                                '<td class="success"><label>英文名</label></td>' +
+                                '<td class="success"><label>电话</label></td>' +
+                                '<td class="success"><label>建立日期</label></td>' +
                                 '<td class="success"><label>地区</label></td>' +
                                 '<td class="success"><label>地址</label></td>' +
                                 '<td class="success"><label>名校</label></td>';
                             html += '<tr class="table-bordered"><td>1</td><td><input type="checkbox"></td>' +
                                 '<td>'+dataArray[0]['name']+'</td><td>'+dataArray[0]['schoolLevel']['name']+'</td>' +
-                                '<td>'+dataArray[0]['region']['name']+'</td><td>'+dataArray[0]['address']+'</td>' +
-                                '<td>'+isGood+'</td>';
+                                '<td>'+dataArray[0]['englishName']+'</td><td>'+dataArray[0]['phone']+'</td>' +
+                                '<td>'+date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay()+'</td><td>'+dataArray[0]['region']['name']+'</td>' +
+                                '<td>'+dataArray[0]['address']+'</td><td>'+isGood+'</td>';
                             document.getElementById('table-user').innerHTML = html;
                             document.getElementById("page-text").innerHTML = "";
                         },
@@ -310,6 +357,9 @@
                         name: document.getElementById("newname").value,
                         level: document.getElementById("newlevel").value,
                         info: document.getElementById("newinfo").value,
+                        englishName: document.getElementById("newenglishName").value,
+                        phone: document.getElementById("newphone").value,
+                        establishDate: document.getElementById("newestablishDate").value,
                         region_id: document.getElementById("newregion_id").value,
                         address: document.getElementById("newaddress").value,
                         image: document.getElementById("newimage").value,
@@ -342,6 +392,9 @@
                         name: document.getElementById("editname").value,
                         level: document.getElementById("editlevel").value,
                         info: document.getElementById("editinfo").value,
+                        englishName: document.getElementById("editenglishName").value,
+                        phone: document.getElementById("editphone").value,
+                        establishDate: document.getElementById("editestablishDate").value,
                         region_id: document.getElementById("editregion_id").value,
                         address: document.getElementById("editaddress").value,
                         image: document.getElementById("editimage").value,
@@ -383,10 +436,14 @@
                     success: function (data) {
                         $('#editModal').modal('show');
                         dataArray = eval(data);
+                        var date = new Date(dataArray[0]['establishDate']);
                         document.getElementById("editid").value = dataArray[0]['id'];
                         document.getElementById("editname").value = dataArray[0]['name'];
                         document.getElementById("editlevel").value = dataArray[0]['level'];
                         document.getElementById("editinfo").value = dataArray[0]['info'];
+                        document.getElementById("editenglishName").value = dataArray[0]['englishName'];
+                        document.getElementById("editphone").value = dataArray[0]['phone'];
+//                        document.getElementById("editestablishDate").value = '"' + date.getYear() + '-' + date.getMonth() + '-' + date.getDay() + '"';
                         document.getElementById("editregion_id").value = dataArray[0]['region_id'];
                         document.getElementById("editaddress").value = dataArray[0]['address'];
                         document.getElementById("editimage").value = dataArray[0]['image'];

@@ -1,6 +1,7 @@
 package com.isp.service.impl;
 
 import com.isp.dao.ParentDao;
+import com.isp.entity.NoticeGroupByConcer;
 import com.isp.entity.Parent;
 import com.isp.service.ParentService;
 import org.apache.ibatis.annotations.Param;
@@ -31,6 +32,11 @@ public class ParentServiceImpl implements ParentService {
 
     public List<Parent> getParentById(Integer id) {
         List<Parent> list = parentDao.getParentById(id);
+        return list;
+    }
+
+    public List<NoticeGroupByConcer> getParenteGroupByConcer() {
+        List<NoticeGroupByConcer> list = parentDao.getParenteGroupByConcer();
         return list;
     }
 

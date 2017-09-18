@@ -1,6 +1,7 @@
 package com.isp.dao;
 
 import com.isp.entity.Teacher;
+import com.isp.entity.TeacherGroupByMonth;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +22,13 @@ public interface TeacherDao {
 
     List<Teacher> getTeacherById(@Param("id") Integer id);
 
+    List<TeacherGroupByMonth> getTeacherGroupByMonth();
+
     Integer getTotalNumber();
+
+    Integer getReallyTeacherNumber();
+
+    Integer getPrimaryTeacherNumber();
 
     void insertTeacher(Map<String, Object> argsMap);
 

@@ -1,5 +1,6 @@
 package com.isp.dao;
 
+import com.isp.entity.NoticeGroupByConcer;
 import com.isp.entity.Parent;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,8 @@ public interface ParentDao {
     List<Parent> getParentByName(@Param("parent_name") String name);
 
     List<Parent> getParentById(@Param("id") Integer id);
+
+    List<NoticeGroupByConcer> getParenteGroupByConcer();
 
     Integer getTotalNumber();
 

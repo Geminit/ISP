@@ -22,6 +22,12 @@
         SELECT * FROM notice WHERE id = ${id}
     </select>
 
+    <select id="getNoticeGroupByMonth" parameterType="java.lang.Integer" resultType="com.isp.entity.NoticeGroupByConcer">
+        select count(id) as number, MONTH(date) as month from notice
+        WHERE YEAR(date) = ${year} AND isClassInfo = 1
+        GROUP BY MONTH(date)
+    </select>
+
     <insert id="insertNotice" parameterType="java.lang.String">
         INSERT INTO notice (title, content, publisher, isClassInfo) VALUE ('${title}', '${content}', '${publisher}',
         ${isClassInfo})

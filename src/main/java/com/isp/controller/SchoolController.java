@@ -96,6 +96,9 @@ public class SchoolController {
         argsMap.put("name", request.getParameter("name"));
         argsMap.put("level", request.getParameter("level"));
         argsMap.put("info", request.getParameter("info"));
+        argsMap.put("englishName", request.getParameter("englishName"));
+        argsMap.put("establishDate", request.getParameter("establishDate"));
+        argsMap.put("phone", request.getParameter("phone"));
         argsMap.put("region_id", request.getParameter("region_id"));
         argsMap.put("address", request.getParameter("address"));
         argsMap.put("image", request.getParameter("image"));
@@ -140,6 +143,9 @@ public class SchoolController {
         argsMap.put("name", request.getParameter("name"));
         argsMap.put("level", request.getParameter("level"));
         argsMap.put("info", request.getParameter("info"));
+        argsMap.put("englishName", request.getParameter("englishName"));
+        argsMap.put("establishDate", request.getParameter("establishDate"));
+        argsMap.put("phone", request.getParameter("phone"));
         argsMap.put("region_id", request.getParameter("region_id"));
         argsMap.put("address", request.getParameter("address"));
         argsMap.put("image", request.getParameter("image"));

@@ -1,6 +1,7 @@
 package com.isp.service.impl;
 
 import com.isp.dao.SchoolDao;
+import com.isp.entity.PrimaryStudentBySchool;
 import com.isp.entity.School;
 import com.isp.service.SchoolService;
 import org.apache.ibatis.annotations.Param;
@@ -36,6 +37,14 @@ public class SchoolServiceImpl implements SchoolService {
     public List<School> getSchoolById(Integer id) {
         List<School> list = schoolDao.getSchoolById(id);
         return list;
+    }
+
+    public List<School> getSchoolName() {
+        return schoolDao.getSchoolName();
+    }
+
+    public List<PrimaryStudentBySchool> primaryStudentBySchool() {
+        return schoolDao.primaryStudentBySchool();
     }
 
     public Integer getTotalNumber() {
