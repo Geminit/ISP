@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.NoticeDao">
+
+    <select id="getNoticeAll" resultType="com.isp.entity.Notice">
+        SELECT * FROM notice;
+    </select>
+
+    <select id="getNoticeByPage" parameterType="java.lang.String" resultType="com.isp.entity.Notice">
+        SELECT * FROM notice ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM notice
+    </select>
+
+    <select id="getNoticeByName" parameterType="java.lang.String" resultType="com.isp.entity.Notice">
+        SELECT * FROM notice WHERE title = '${name}'
+    </select>
+
+    <select id="getNoticeById" parameterType="java.lang.Integer" resultType="com.isp.entity.Notice">
+        SELECT * FROM notice WHERE id = ${id}
+    </select>
+
+    <insert id="insertNotice" parameterType="java.lang.String">
+        INSERT INTO notice (title, content, publisher, isClassInfo) VALUE ('${title}', '${content}', '${publisher}',
+        ${isClassInfo})
+    </insert>
+
+    <update id="updateNotice" parameterType="java.lang.Integer">
+        UPDATE notice SET title = '${title}', content = '${content}', publisher = '${publisher}',
+        isClassInfo = ${isClassInfo} WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM notice WHERE id = ${id}
+    </delete>
+</mapper>

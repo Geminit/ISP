@@ -15,6 +15,15 @@ public class Teacher {
     private School schoole;
     private Subject subjecte;
     private Title titlee;
+    private SchoolLevel schoolLevel;
+
+    public SchoolLevel getSchoolLevel() {
+        return schoolLevel;
+    }
+
+    public void setSchoolLevel(SchoolLevel schoolLevel) {
+        this.schoolLevel = schoolLevel;
+    }
 
     public Subject getSubjecte() {
         return subjecte;

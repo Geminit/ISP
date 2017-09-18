@@ -66,7 +66,7 @@
                                     <td style="color: lightblue">启用</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td style="color: lightcoral;">停用</td>
+                                    <td style="color: lightcoral">停用</td>
                                 </c:otherwise>
                             </c:choose>
                             <td>${key.email}</td>
@@ -252,9 +252,8 @@
                                 '<label>用户名</label></td><td class="success"><label>角色</label></td><td class="success">' +
                                 '<label>状态</label></td><td class="success"><label>邮箱</label></td></tr>';
                             html += '<tr class="table-bordered"><td>1</td><td><input type="checkbox"></td>' +
-                                '<td>'+dataArray[0]['account']+'</td><td>'+dataArray[0]['username']+'</td>' +
-                                '<td>'+dataArray[0]['rolee']['name']+'</td><td>'+status+'</td>' +
-                                '<td>'+dataArray[0]['email']+'</td>';
+                                '<td>'+dataArray[0]["account"]+'</td><td>'+dataArray[0]["username"]+'</td>' +
+                                '<td>'+dataArray[0]["date"]+'</td>';
                             document.getElementById('table-user').innerHTML = html;
                             document.getElementById("page-text").innerHTML = "";
                         },

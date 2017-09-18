@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.isp.dao.SchoolLevelDao">
 
+    <select id="getSchoolLevelAll" parameterType="java.lang.String" resultType="com.isp.entity.SchoolLevel">
+        SELECT * FROM school_level ORDER BY id
+    </select>
+
     <select id="getSchoolLevelByPage" parameterType="java.lang.String" resultType="com.isp.entity.SchoolLevel">
         SELECT * FROM school_level ORDER BY id limit ${start}, ${end}
     </select>

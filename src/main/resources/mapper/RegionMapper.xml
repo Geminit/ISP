@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.RegionDao">
+
+    <select id="getRegionAll" parameterType="java.lang.String" resultType="com.isp.entity.Region">
+        SELECT * FROM region ORDER BY id
+    </select>
+
+    <select id="getRegionByPage" parameterType="java.lang.String" resultType="com.isp.entity.Region">
+        SELECT * FROM region ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM region
+    </select>
+
+    <select id="getRegionByName" parameterType="java.lang.String" resultType="com.isp.entity.Region">
+        SELECT * FROM region WHERE name = '${name}'
+    </select>
+
+    <select id="getRegionById" parameterType="java.lang.Integer" resultType="com.isp.entity.Region">
+        SELECT * FROM region WHERE id = ${id}
+    </select>
+
+    <insert id="insertRegion" parameterType="java.lang.String">
+        INSERT INTO region (name) VALUE ('${name}')
+    </insert>
+
+    <update id="updateRegion" parameterType="java.lang.Integer">
+        UPDATE region SET name = '${name}' WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM region WHERE id = ${id}
+    </delete>
+</mapper>

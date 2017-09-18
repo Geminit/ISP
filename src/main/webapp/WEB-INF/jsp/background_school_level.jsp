@@ -22,7 +22,7 @@
             <%--搜索框--%>
             <div class="form-inline" id="input-box">
                 <div class="form-group">
-                    <label>账号: </label>
+                    <label>学校层次: </label>
                     <input type="text" class="form-control" id="name">
                 </div>
                 <button class="btn btn-primary" id="search-btn">搜索</button>

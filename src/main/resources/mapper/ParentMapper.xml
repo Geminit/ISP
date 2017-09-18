@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.ParentDao">
+
+    <select id="getParentByPage" parameterType="java.lang.String" resultType="com.isp.entity.Parent">
+        SELECT * FROM parent ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM parent
+    </select>
+
+    <select id="getParentByName" parameterType="java.lang.String" resultType="com.isp.entity.Parent">
+        SELECT * FROM parent WHERE parent_name = '${parent_name}'
+    </select>
+
+    <select id="getParentById" parameterType="java.lang.Integer" resultType="com.isp.entity.Parent">
+        SELECT * FROM parent WHERE id = ${id}
+    </select>
+
+    <insert id="insertParent" parameterType="java.lang.String">
+        INSERT INTO parent (parent_name, concern) VALUE ('${parent_name}', '${concern}')
+    </insert>
+
+    <update id="updateParent" parameterType="java.lang.Integer">
+        UPDATE parent SET parent_name = '${parent_name}', concern = '${concern}' WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM parent WHERE id = ${id}
+    </delete>
+</mapper>

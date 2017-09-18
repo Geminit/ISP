@@ -13,6 +13,8 @@ import java.util.Map;
 @Repository
 public interface GradeDao {
 
+    List<Grade> getGradeAll();
+
     List<Grade> getGradeByPage(Map<String, Object> argsMap);
 
     List<Grade> getGradeByName(@Param("name") String name);

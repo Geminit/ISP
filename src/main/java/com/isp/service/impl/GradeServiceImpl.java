@@ -19,6 +19,10 @@ public class GradeServiceImpl implements GradeService {
     @Autowired
     private GradeDao gradeDao;
 
+    public List<Grade> getGradeAll() {
+        return gradeDao.getGradeAll();
+    }
+
     public List<Grade> getGradeByPage(Map<String, Object> argsMap) {
         List<Grade> list = gradeDao.getGradeByPage(argsMap);
         return list;

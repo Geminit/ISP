@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.TitleDao">
+
+    <select id="getTitleAll" parameterType="java.lang.String" resultType="com.isp.entity.Title">
+        SELECT * FROM title
+    </select>
+
+    <select id="getTitleByPage" parameterType="java.lang.String" resultType="com.isp.entity.Title">
+        SELECT * FROM title ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM title
+    </select>
+
+    <select id="getTitleByName" parameterType="java.lang.String" resultType="com.isp.entity.Title">
+        SELECT * FROM title WHERE name = '${name}'
+    </select>
+
+    <select id="getTitleById" parameterType="java.lang.Integer" resultType="com.isp.entity.Title">
+        SELECT * FROM title WHERE id = ${id}
+    </select>
+
+    <insert id="insertTitle" parameterType="java.lang.String">
+        INSERT INTO title (name) VALUE ('${name}')
+    </insert>
+
+    <update id="updateTitle" parameterType="java.lang.Integer">
+        UPDATE title SET name = '${name}' WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM title WHERE id = ${id}
+    </delete>
+</mapper>

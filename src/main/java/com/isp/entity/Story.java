@@ -9,6 +9,8 @@ public class Story {
     private String content;
     private String image;
 
+    private Teacher teachere;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class Story {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Teacher getTeachere() {
+        return teachere;
+    }
+
+    public void setTeachere(Teacher teachere) {
+        this.teachere = teachere;
     }
 }

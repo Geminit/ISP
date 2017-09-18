@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.ClassDao">
+
+    <resultMap id="ClassBaseMap" type="com.isp.entity.Class">
+        <id column="id" property="id" jdbcType="NUMERIC"/>
+        <result column="classnumber" property="classnumber" jdbcType="NUMERIC"></result>
+        <result column="number" property="number" jdbcType="NUMERIC"/>
+        <result column="graduate_number" property="graduate_number" jdbcType="NUMERIC"/>
+        <result column="graduate_year" property="graduate_year" jdbcType="NUMERIC"/>
+        <association property="schoole" javaType="com.isp.entity.School">
+            <result column="schoolname" property="name"></result>
+        </association>
+        <association property="teachere" javaType="com.isp.entity.Teacher">
+            <result column="teachername" property="name"></result>
+        </association>
+        <association property="gradee" javaType="com.isp.entity.Grade">
+            <result column="gradename" property="name"></result>
+        </association>
+    </resultMap>
+
+    <select id="getClassAll" resultType="com.isp.entity.Class">
+        SELECT * FROM class
+    </select>
+
+    <select id="getClassByPage" parameterType="java.lang.String" resultMap="ClassBaseMap">
+        SELECT class.id, school.name as schoolname, grade.name as gradename, classnumber, number, teacher.name as teachername,
+        graduate_number, graduate_year FROM class, school, teacher, grade WHERE class.school = school.id
+        AND class.grade = grade.id AND class.hometeacher = teacher.id ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM class
+    </select>
+
+    <select id="getClassByName" parameterType="java.lang.String" resultType="com.isp.entity.Class">
+        SELECT * FROM class WHERE name = '${name}'
+    </select>
+
+    <select id="getClassById" parameterType="java.lang.Integer" resultType="com.isp.entity.Class">
+        SELECT * FROM class WHERE class.id = ${id}
+    </select>
+
+    <insert id="insertClass" parameterType="java.lang.String">
+        INSERT INTO class (school, grade, classnumber, number, hometeacher, graduate_number, graduate_year)
+        VALUE (${school},${grade},${classnumber},${number},${hometeacher},${graduate_number},${graduate_year})
+    </insert>
+
+    <update id="updateClass" parameterType="java.lang.Integer">
+        UPDATE class SET school = ${school}, grade = ${grade}, classnumber = ${classnumber}, number = ${number},
+        hometeacher = ${hometeacher}, graduate_number = ${graduate_number}, graduate_year = ${graduate_year} WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM class WHERE id = ${id}
+    </delete>
+</mapper>

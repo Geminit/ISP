@@ -19,6 +19,10 @@ public class SchoolLevelServiceImpl implements SchoolLevelService {
     @Autowired
     private SchoolLevelDao schoolLevelDao;
 
+    public List<SchoolLevel> getSchoolLevelAll() {
+        return schoolLevelDao.getSchoolLevelAll();
+    }
+
     public List<SchoolLevel> getSchoolLevelByPage(Map<String, Object> argsMap) {
         List<SchoolLevel> list = schoolLevelDao.getSchoolLevelByPage(argsMap);
         return list;

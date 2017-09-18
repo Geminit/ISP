@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.StoryDao">
+
+    <resultMap id="StoryBaseMap" type="com.isp.entity.Story">
+        <id column="id" property="id" jdbcType="NUMERIC"/>
+        <result column="content" property="content" jdbcType="VARCHAR"></result>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <association property="teachere" javaType="com.isp.entity.Teacher">
+            <result column="name" property="name"></result>
+        </association>
+    </resultMap>
+
+    <select id="getStoryAll" resultType="com.isp.entity.Story">
+        SELECT * FROM story;
+    </select>
+
+    <select id="getStoryByPage" parameterType="java.lang.String" resultMap="StoryBaseMap">
+        select story.id, teacher.name, content, image from story, teacher
+        WHERE teacher_id = teacher.id ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM story
+    </select>
+
+    <select id="getStoryByName" parameterType="java.lang.String" resultMap="StoryBaseMap">
+        select story.id, teacher.name, content, image from story, teacher
+WHERE teacher_id = teacher.id and teacher.name = '${name}'
+    </select>
+
+    <select id="getStoryById" parameterType="java.lang.Integer" resultType="com.isp.entity.Story">
+        SELECT * FROM story WHERE id = ${id}
+    </select>
+
+    <insert id="insertStory" parameterType="java.lang.String">
+        INSERT INTO story (teacher_id, content, image) VALUE (${teacher},'${content}','${image}')
+    </insert>
+
+    <update id="updateStory" parameterType="java.lang.Integer">
+        UPDATE story SET teacher_id = ${teacher_id}, content = '${content}', image = '${image}' WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM story WHERE id = ${id}
+    </delete>
+</mapper>

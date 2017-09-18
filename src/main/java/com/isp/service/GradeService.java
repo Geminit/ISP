@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public interface GradeService {
 
+    List<Grade> getGradeAll();
+
     List<Grade> getGradeByPage(Map<String, Object> argsMap);        //按页查询学校层次
 
     List<Grade> getGradeByName(String name);

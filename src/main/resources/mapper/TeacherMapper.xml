@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.TeacherDao">
+
+    <resultMap id="TeacherBaseMap" type="com.isp.entity.Teacher">
+        <id column="id" property="id" jdbcType="NUMERIC"/>
+        <result column="name" property="name" jdbcType="VARCHAR"></result>
+        <result column="isGood" property="isGood" jdbcType="NUMERIC"/>
+        <association property="titlee" javaType="com.isp.entity.Title">
+            <result column="titlename" property="name"></result>
+        </association>
+        <association property="subjecte" javaType="com.isp.entity.Subject">
+            <result column="subjectname" property="name"></result>
+        </association>
+        <association property="schoole" javaType="com.isp.entity.School">
+            <result column="schoolname" property="name"></result>
+        </association>
+        <association property="schoolLevel" javaType="com.isp.entity.SchoolLevel">
+            <result column="schoollevelname" property="name"></result>
+        </association>
+    </resultMap>
+
+    <select id="getTeacherAll" resultType="com.isp.entity.Teacher">
+        SELECT * FROM teacher;
+    </select>
+
+    <select id="getTeacherByPage" parameterType="java.lang.String" resultMap="TeacherBaseMap">
+        SELECT teacher.id, teacher. NAME, school. NAME AS schoolname, school_level.`name` AS schoollevelname,
+        `subject`. NAME AS subjectname, title. NAME AS titlename, teacher.isGood FROM teacher, title, `subject`,
+        school, school_level WHERE school = school.id AND diploma = school_level.id AND `subject` = `subject`.id
+        AND teacher.title = title.id ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM teacher
+    </select>
+
+    <select id="getTeacherByName" parameterType="java.lang.String" resultMap="TeacherBaseMap">
+        SELECT teacher.id, teacher. NAME, school. NAME AS schoolname, school_level.`name` AS schoollevelname,
+        `subject`. NAME AS subjectname, title. NAME AS titlename, teacher.isGood FROM teacher, title, `subject`,
+        school, school_level WHERE school = school.id AND diploma = school_level.id AND `subject` = `subject`.id
+        AND teacher.title = title.id and teacher.name = '${name}'
+    </select>
+
+    <select id="getTeacherById" parameterType="java.lang.Integer" resultType="com.isp.entity.Teacher">
+        SELECT * FROM teacher WHERE id = ${id}
+    </select>
+
+    <insert id="insertTeacher" parameterType="java.lang.String">
+        INSERT INTO teacher (name, school, diploma, subject, title, isGood) VALUE ('${name}',
+         ${school}, ${diploma}, ${subject}, ${title}, ${isGood})
+    </insert>
+
+    <update id="updateTeacher" parameterType="java.lang.Integer">
+        UPDATE teacher SET name = '${name}', school = ${school}, diploma = ${diploma},
+        subject = ${subject}, title = ${title}, isGood = ${isGood} WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM teacher WHERE id = ${id}
+    </delete>
+</mapper>

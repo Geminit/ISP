@@ -13,6 +13,8 @@ import java.util.Map;
 @Repository
 public interface SchoolLevelDao {
 
+    List<SchoolLevel> getSchoolLevelAll();
+
     List<SchoolLevel> getSchoolLevelByPage(Map<String, Object> argsMap);
 
     List<SchoolLevel> getSchoolLevelByName(@Param("name")String name);

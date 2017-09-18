@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public interface SchoolLevelService {
 
+    List<SchoolLevel> getSchoolLevelAll();
+
     List<SchoolLevel> getSchoolLevelByPage(Map<String, Object> argsMap);        //按页查询学校层次
 
     List<SchoolLevel> getSchoolLevelByName(String name);

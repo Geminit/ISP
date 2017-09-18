@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.SchoolInfoRecordDao">
+
+    <resultMap id="SchoolInfoRecordBaseMap" type="com.isp.entity.SchoolInfoRecord">
+        <id column="id" property="id" jdbcType="NUMERIC"/>
+        <result column="info" property="info" jdbcType="VARCHAR"/>
+        <result column="new_info" property="new_info" jdbcType="VARCHAR"/>
+        <result column="date" property="date" jdbcType="DATE"/>
+        <association property="schoole" javaType="com.isp.entity.School">
+            <result column="schoolname" property="name"></result>
+        </association>
+        <association property="infoTypee" javaType="com.isp.entity.InfoType">
+            <result column="infoTypename" property="name"></result>
+        </association>
+    </resultMap>
+
+    <select id="getSchoolInfoRecordAll" resultType="com.isp.entity.SchoolInfoRecord">
+        SELECT * FROM school_info_record;
+    </select>
+
+    <select id="getSchoolInfoRecordByPage" parameterType="java.lang.String" resultMap="SchoolInfoRecordBaseMap">
+        SELECT school_info_record.id, school_info_record.info, school_info_record.new_info,
+        info_type.name AS infoTypename, school.name AS schoolname, school_info_record.date FROM school_info_record, info_type, school
+        WHERE school_id = school.id and type = info_type.id ORDER BY school_info_record.id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM school_info_record
+    </select>
+
+    <select id="getSchoolInfoRecordByName" parameterType="java.lang.String" resultMap="SchoolInfoRecordBaseMap">
+        SELECT school_info_record.id, content, date, school.name as schoolname,
+        info_type.name as infoTypename from school_info_record, school, info_type
+        WHERE school_id = school.id and kind = info_type.id and school.name = '${name}'
+    </select>
+
+    <select id="getSchoolInfoRecordById" parameterType="java.lang.Integer" resultType="com.isp.entity.SchoolInfoRecord">
+        SELECT * FROM school_info_record WHERE id = ${id}
+    </select>
+
+    <insert id="insertSchoolInfoRecord" parameterType="java.lang.String">
+        INSERT INTO school_info_record (school_id, type, info, new_info) VALUE
+        (${school_id}, ${type}, '${info}', '${new_info}')
+    </insert>
+
+    <update id="updateSchoolInfoRecord" parameterType="java.lang.Integer">
+        UPDATE school_info_record SET school_id = ${school_id}, type = ${type},
+        info = '${info}', new_info = '${new_info}' WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM school_info_record WHERE id = ${id}
+    </delete>
+</mapper>

@@ -13,24 +13,8 @@ public class SchoolInfoRecord {
     private String new_info;
     private Timestamp date;
 
-    private School school3;
-    private InfoType infoType;
-
-    public School getSchool3() {
-        return school3;
-    }
-
-    public void setSchool3(School school3) {
-        this.school3 = school3;
-    }
-
-    public InfoType getInfoType() {
-        return infoType;
-    }
-
-    public void setInfoType(InfoType infoType) {
-        this.infoType = infoType;
-    }
+    private School schoole;
+    private InfoType infoTypee;
 
     public Integer getId() {
         return id;
@@ -78,5 +62,21 @@ public class SchoolInfoRecord {
 
     public void setDate(Timestamp date) {
         this.date = date;
+    }
+
+    public School getSchoole() {
+        return schoole;
+    }
+
+    public void setSchoole(School schoole) {
+        this.schoole = schoole;
+    }
+
+    public InfoType getInfoTypee() {
+        return infoTypee;
+    }
+
+    public void setInfoTypee(InfoType infoTypee) {
+        this.infoTypee = infoTypee;
     }
 }

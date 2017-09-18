@@ -11,7 +11,7 @@ public class School {
     private String name;
     private Integer level;
     private String info;
-    private String region_id;
+    private Integer region_id;
     private String address;
     private String image;
     private Integer isGood;
@@ -59,11 +59,11 @@ public class School {
         this.info = info;
     }
 
-    public String getRegion_id() {
+    public Integer getRegion_id() {
         return region_id;
     }
 
-    public void setRegion_id(String region_id) {
+    public void setRegion_id(Integer region_id) {
         this.region_id = region_id;
     }
 

@@ -16,6 +16,15 @@ public class License {
     private Timestamp date;
 
     private School schoole;
+    private InfoType infoTypee;
+
+    public InfoType getInfoType() {
+        return infoTypee;
+    }
+
+    public void setInfoType(InfoType infoType) {
+        this.infoTypee = infoType;
+    }
 
     public Integer getId() {
         return id;

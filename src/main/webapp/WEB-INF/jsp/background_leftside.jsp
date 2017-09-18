@@ -22,7 +22,13 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>学校管理</a></li>
+                    <li><a href="/schoollevel/index?page=1"><i class="fa fa-circle-o"></i>学校层次管理</a></li>
+                    <li><a href="/grade/index?page=1"><i class="fa fa-circle-o"></i>年级管理</a></li>
+                    <li><a href="/infotype/index?page=1"><i class="fa fa-circle-o"></i>变更类型管理</a></li>
+                    <li><a href="/region/index?page=1"><i class="fa fa-circle-o"></i>区域管理</a></li>
+                    <li><a href="/subject/index?page=1"><i class="fa fa-circle-o"></i>科目管理</a></li>
+                    <li><a href="/title/index?page=1"><i class="fa fa-circle-o"></i>职称管理</a></li>
+                    <li><a href="/parent/index?page=1"><i class="fa fa-circle-o"></i>父母关注点管理</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -33,7 +39,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i>用户管理</a></li>
+                    <li class="active"><a href="/user/index?page=1"><i class="fa fa-circle-o"></i>用户管理</a></li>
                     <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
                 </ul>
             </li>
