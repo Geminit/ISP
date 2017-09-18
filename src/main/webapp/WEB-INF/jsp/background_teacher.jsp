@@ -53,6 +53,7 @@
                         <td class="success"><label>文化程度</label></td>
                         <td class="success"><label>科目</label></td>
                         <td class="success"><label>职称</label></td>
+                        <td class="success"><label>年龄</label></td>
                         <td class="success"><label>名师</label></td>
                     </tr>
                     <c:forEach items="${user}" var="key" varStatus="status">
@@ -64,6 +65,7 @@
                             <td>${key.schoolLevel.name}</td>
                             <td>${key.subjecte.name}</td>
                             <td>${key.titlee.name}</td>
+                            <td>${key.age}</td>
                             <c:choose>
                                 <c:when test="${key.isGood==1}">
                                     <td>是</td>
@@ -169,6 +171,18 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label>年&#8195;&#8195;龄:  </label>
+                                    <input type="text" id="newage">
+                                </div>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <label>图&#8195;&#8195;片:  </label>
+                                    <input type="text" id="newimage">
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" id="newbutton">新建</button>
@@ -244,6 +258,18 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>年&#8195;&#8195;龄:  </label>
+                                        <input type="text" id="editage">
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label>图&#8195;&#8195;片:  </label>
+                                        <input type="text" id="editimage">
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" id="editlbutton">更新</button>
@@ -287,11 +313,12 @@
                                 '<td class="success"><label>文化程度</label></td>' +
                                 '<td class="success"><label>科目</label></td>' +
                                 '<td class="success"><label>职称</label></td>' +
+                                '<td class="success"><label>年龄</label></td>' +
                                 '<td class="success"><label>名师</label></td>';
                             html += '<tr class="table-bordered"><td>1</td><td><input type="checkbox"></td>' +
                                 '<td>'+dataArray[0]['name']+'</td><td>'+dataArray[0]['schoole']['name']+'</td>' +
                                 '<td>'+dataArray[0]['schoolLevel']['name']+'</td><td>'+dataArray[0]['subjecte']['name']+'</td>' +
-                                '<td>'+dataArray[0]['titlee']['name']+'</td><td>'+isGood+'</td>';
+                                '<td>'+dataArray[0]['titlee']['name']+'</td><td>'+dataArray[0]['age']+'</td><td>'+isGood+'</td>';
                             document.getElementById('table-user').innerHTML = html;
                             document.getElementById("page-text").innerHTML = "";
                         },
@@ -315,6 +342,8 @@
                         subject: document.getElementById("newsubject").value,
                         title: document.getElementById("newtitle").value,
                         isGood: document.getElementById("newisGood").value,
+                        age: document.getElementById("newage").value,
+                        image: document.getElementById("newimage").value,
                     },
                     success: function (data) {
                         var result = eval(data);
@@ -346,6 +375,8 @@
                         subject: document.getElementById("editsubject").value,
                         title: document.getElementById("edittitle").value,
                         isGood: document.getElementById("editisGood").value,
+                        age: document.getElementById("editage").value,
+                        image: document.getElementById("editimage").value,
                     },
                     success: function (data) {
                         var result = eval(data);
@@ -391,6 +422,8 @@
                         document.getElementById("editsubject").value = dataArray[0]['subject'];
                         document.getElementById("edittitle").value = dataArray[0]['title'];
                         document.getElementById("editisGood").value = dataArray[0]['isGood'];
+                        document.getElementById("editage").value = dataArray[0]['age'];
+                        document.getElementById("editimage").value = dataArray[0]['image'];
                     },
                 })
             }else {

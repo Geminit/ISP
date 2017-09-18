@@ -6,7 +6,7 @@ package com.isp.entity;
 public class Teacher {
     private Integer id;
     private String name;
-    private int age;
+    private Integer age;
     private Integer school;
     private Integer diploma;
     private Integer subject;
@@ -17,6 +17,15 @@ public class Teacher {
     private School schoole;
     private Subject subjecte;
     private Title titlee;
+    private SchoolLevel schoolLevel;
+
+    public SchoolLevel getSchoolLevel() {
+        return schoolLevel;
+    }
+
+    public void setSchoolLevel(SchoolLevel schoolLevele) {
+        this.schoolLevel = schoolLevele;
+    }
 
     public Subject getSubjecte() {
         return subjecte;
@@ -98,9 +107,9 @@ public class Teacher {
         this.isGood = isGood;
     }
 
-    public int getAge() { return age; }
+    public Integer getAge() { return age; }
 
-    public void setAge(int age) { this.age = age; }
+    public void setAge(Integer age) { this.age = age; }
 
     public String getImage() { return image; }
 

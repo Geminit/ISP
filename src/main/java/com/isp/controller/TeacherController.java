@@ -103,6 +103,8 @@ public class TeacherController {
         argsMap.put("subject", request.getParameter("subject"));
         argsMap.put("title", request.getParameter("title"));
         argsMap.put("isGood", request.getParameter("isGood"));
+        argsMap.put("image", request.getParameter("image"));
+        argsMap.put("age", request.getParameter("age"));
 
         String result;
         try {
@@ -146,6 +148,8 @@ public class TeacherController {
         argsMap.put("subject", request.getParameter("subject"));
         argsMap.put("title", request.getParameter("title"));
         argsMap.put("isGood", request.getParameter("isGood"));
+        argsMap.put("image", request.getParameter("image"));
+        argsMap.put("age", request.getParameter("age"));
         String result;
         try {
             teacherService.updateTeacher(argsMap);

@@ -16,7 +16,7 @@
     </select>
 
     <select id="getStoryByPage" parameterType="java.lang.String" resultMap="StoryBaseMap">
-        select story.id, teacher.name, content, image from story, teacher
+        select story.id, teacher.name, content, story.image from story, teacher
         WHERE teacher_id = teacher.id ORDER BY id limit ${start}, ${end}
     </select>
 
@@ -25,7 +25,7 @@
     </select>
 
     <select id="getStoryByName" parameterType="java.lang.String" resultMap="StoryBaseMap">
-        select story.id, teacher.name, content, image from story, teacher
+        select story.id, teacher.name, content, story.image from story, teacher
 WHERE teacher_id = teacher.id and teacher.name = '${name}'
     </select>
 

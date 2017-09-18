@@ -22,7 +22,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="/manage/index"><i class="fa fa-circle-o"></i>学校数据</a></li>
-                    <li><a href="/user/index?page=1"><i class="fa fa-circle-o"></i>校外数据</a></li>
+                    <li><a href="/manage/dataview"><i class="fa fa-circle-o"></i>校外数据</a></li>
                 </ul>
             </li>
             <li class="active treeview menu-open">
