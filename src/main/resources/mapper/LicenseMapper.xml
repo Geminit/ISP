@@ -14,11 +14,31 @@
         </association>
     </resultMap>
 
+    <resultMap id="BaseMap" type="com.isp.entity.License">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="school_id" property="school_id" jdbcType="INTEGER" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="kind" property="kind" jdbcType="INTEGER" />
+        <result column="date" property="date" jdbcType="TIMESTAMP" />
+        <association property="schoole" javaType="com.isp.entity.School">
+            <result column="id" property="id"></result>
+            <result column="name" property="name"></result>
+        </association>
+        <association property="infoType" javaType="com.isp.entity.InfoType">
+            <result column="id" property="id"></result>
+            <result column="name" property="name"></result>
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        license.id, school_id, content, kind, date, school.id, school.name, info_type.id, info_type.name
+    </sql>
+
     <select id="getLicenseAll" resultType="com.isp.entity.License">
         SELECT * FROM license;
     </select>
 
-    <select id="getLicenseByPage" parameterType="java.lang.String" resultMap="LicenseBaseMap">
+    <select id="getLicenseByPage1" parameterType="java.lang.String" resultMap="LicenseBaseMap">
         SELECT license.id, content, date, school.name as schoolname,
         info_type.name as infoTypename from license, school, info_type
         WHERE school_id = school.id and kind = info_type.id ORDER BY license.id limit ${start}, ${end}
@@ -34,7 +54,7 @@
         WHERE school_id = school.id and kind = info_type.id and school.name = '${name}'
     </select>
 
-    <select id="getLicenseById" parameterType="java.lang.Integer" resultType="com.isp.entity.License">
+    <select id="getLicenseById1" parameterType="java.lang.Integer" resultType="com.isp.entity.License">
         SELECT * FROM license WHERE id = ${id}
     </select>
 
@@ -49,4 +69,24 @@
     <delete id="deleteById" parameterType="java.lang.Integer">
         DELETE FROM license WHERE id = ${id}
     </delete>
+
+    <select id="getLicenseById" resultMap="BaseMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM license
+        LEFT JOIN school ON school.id = license.school_id
+        LEFT JOIN info_type ON info_type.id = license.kind
+        WHERE license.id = ${licenseId}
+        ORDER BY license.id DESC
+    </select>
+
+    <select id="getLicenseByPage" resultMap="BaseMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM license
+        LEFT JOIN school ON school.id = license.school_id
+        LEFT JOIN info_type ON info_type.id = license.kind
+        ORDER BY license.id DESC
+        LIMIT ${(page-1)*5},10
+    </select>
 </mapper>
