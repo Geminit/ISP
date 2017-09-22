@@ -15,6 +15,46 @@
         id, title, content, publisher, date, isClassInfo
     </sql>
 
+    <select id="getNoticeAll" resultType="com.isp.entity.Notice">
+        SELECT * FROM notice;
+    </select>
+
+    <select id="getNoticeByPage1" parameterType="java.lang.String" resultType="com.isp.entity.Notice">
+        SELECT * FROM notice ORDER BY id limit ${start}, ${end}
+    </select>
+
+    <select id="getTotalNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM notice
+    </select>
+
+    <select id="getNoticeByName" parameterType="java.lang.String" resultType="com.isp.entity.Notice">
+        SELECT * FROM notice WHERE title = '${name}'
+    </select>
+
+    <select id="getNoticeById1" parameterType="java.lang.Integer" resultType="com.isp.entity.Notice">
+        SELECT * FROM notice WHERE id = ${id}
+    </select>
+
+    <select id="getNoticeGroupByMonth" parameterType="java.lang.Integer" resultType="com.isp.entity.NoticeGroupByConcer">
+        select count(id) as number, MONTH(date) as month from notice
+        WHERE YEAR(date) = ${year} AND isClassInfo = 1
+        GROUP BY MONTH(date)
+    </select>
+
+    <insert id="insertNotice" parameterType="java.lang.String">
+        INSERT INTO notice (title, content, publisher, isClassInfo) VALUE ('${title}', '${content}', '${publisher}',
+        ${isClassInfo})
+    </insert>
+
+    <update id="updateNotice" parameterType="java.lang.Integer">
+        UPDATE notice SET title = '${title}', content = '${content}', publisher = '${publisher}',
+        isClassInfo = ${isClassInfo} WHERE id = ${id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM notice WHERE id = ${id}
+    </delete>
+
     <select id="getNoticeNumber" resultType="Integer">
         SELECT
         COUNT(id) AS totle
@@ -36,5 +76,4 @@
         ORDER BY id DESC
         LIMIT ${(page-1)*5},10
     </select>
-
 </mapper>
