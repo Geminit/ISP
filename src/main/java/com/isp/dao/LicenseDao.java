@@ -15,11 +15,11 @@ public interface LicenseDao {
 
     List<License> getLicenseAll();
 
-    List<License> getLicenseByPage(Map<String, Object> argsMap);
+    List<License> getLicenseByPage1(Map<String, Object> argsMap);
 
     List<License> getLicenseByName(@Param("name") String name);
 
-    List<License> getLicenseById(@Param("id") Integer id);
+    List<License> getLicenseById1(@Param("id") Integer id);
 
     Integer getTotalNumber();
 
@@ -28,4 +28,10 @@ public interface LicenseDao {
     void updateLicense(Map<String, Object> argsMap);
 
     void deleteById(@Param("id") Integer id);
+
+    int getLicenseNumber();
+
+    License getLicenseById(@Param("licenseId") int id);
+
+    List<License> getLicenseByPage(@Param("page")int page);
 }
