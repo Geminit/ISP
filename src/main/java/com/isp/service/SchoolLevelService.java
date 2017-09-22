@@ -25,5 +25,5 @@ public interface SchoolLevelService {
 
     void updateSchoolLevel(Map<String, Object> argsMap);
 
-    void deleteById(@Param("id")Integer id);
+    void deleteById(@Param("id") Integer id);
 }

@@ -17,9 +17,9 @@ public interface SchoolLevelDao {
 
     List<SchoolLevel> getSchoolLevelByPage(Map<String, Object> argsMap);
 
-    List<SchoolLevel> getSchoolLevelByName(@Param("name")String name);
+    List<SchoolLevel> getSchoolLevelByName(@Param("name") String name);
 
-    List<SchoolLevel> getSchoolLevelById(@Param("id")Integer id);
+    List<SchoolLevel> getSchoolLevelById(@Param("id") Integer id);
 
     Integer getTotalNumber();
 
@@ -27,5 +27,5 @@ public interface SchoolLevelDao {
 
     void updateSchoolLevel(Map<String, Object> argsMap);
 
-    void deleteById(@Param("id")Integer id);
+    void deleteById(@Param("id") Integer id);
 }

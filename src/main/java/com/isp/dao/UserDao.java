@@ -16,9 +16,9 @@ public interface UserDao {
 
     List<Object> getUserByPage(Map<String, Object> argsMap);
 
-    List<Object> getUserByAccount(@Param("account")String account);
+    List<Object> getUserByAccount(@Param("account") String account);
 
-    List<Object> getUserById(@Param("id")Integer id);
+    List<Object> getUserById(@Param("id") Integer id);
 
     Integer getTotalNumber();
 
@@ -26,5 +26,5 @@ public interface UserDao {
 
     void updateUser(Map<String, Object> argsMap);
 
-    void deleteById(@Param("id")Integer id);
+    void deleteById(@Param("id") Integer id);
 }

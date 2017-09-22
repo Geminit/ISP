@@ -89,5 +89,4 @@
         ORDER BY license.id DESC
         LIMIT ${(page-1)*5},10
     </select>
-    
 </mapper>
