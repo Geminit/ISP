@@ -28,10 +28,4 @@ public interface LicenseDao {
     void updateLicense(Map<String, Object> argsMap);
 
     void deleteById(@Param("id") Integer id);
-
-    int getLicenseNumber();
-
-    License getLicenseById(@Param("licenseId") int id);
-
-    List<License> getLicenseByPage(@Param("page")int page);
 }
