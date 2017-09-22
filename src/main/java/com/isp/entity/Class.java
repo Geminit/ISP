@@ -7,6 +7,7 @@ public class Class {
     private Integer id;
     private Integer school;
     private Integer grade;
+    private Integer classnumber;
     private Integer number;
     private Integer hometeacher;
     private Integer graduate_number;
@@ -14,22 +15,7 @@ public class Class {
 
     private Grade gradee;
     private School schoole;
-
-    public School getSchoole() {
-        return schoole;
-    }
-
-    public void setSchoole(School schoole) {
-        this.schoole = schoole;
-    }
-
-    public Grade getGradee() {
-        return gradee;
-    }
-
-    public void setGradee(Grade gradee) {
-        this.gradee = gradee;
-    }
+    private Teacher teachere;
 
     public Integer getId() {
         return id;
@@ -53,6 +39,14 @@ public class Class {
 
     public void setGrade(Integer grade) {
         this.grade = grade;
+    }
+
+    public Integer getClassnumber() {
+        return classnumber;
+    }
+
+    public void setClassnumber(Integer classnumber) {
+        this.classnumber = classnumber;
     }
 
     public Integer getNumber() {
@@ -85,5 +79,29 @@ public class Class {
 
     public void setGraduate_year(Integer graduate_year) {
         this.graduate_year = graduate_year;
+    }
+
+    public Grade getGradee() {
+        return gradee;
+    }
+
+    public void setGradee(Grade gradee) {
+        this.gradee = gradee;
+    }
+
+    public School getSchoole() {
+        return schoole;
+    }
+
+    public void setSchoole(School schoole) {
+        this.schoole = schoole;
+    }
+
+    public Teacher getTeachere() {
+        return teachere;
+    }
+
+    public void setTeachere(Teacher teachere) {
+        this.teachere = teachere;
     }
 }
