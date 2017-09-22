@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.LicenseDao">
+
+    <resultMap id="BaseMap" type="com.isp.entity.License">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="school_id" property="school_id" jdbcType="INTEGER" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="kind" property="kind" jdbcType="INTEGER" />
+        <result column="date" property="date" jdbcType="TIMESTAMP" />
+        <association property="schoole" javaType="com.isp.entity.School">
+            <result column="id" property="id"></result>
+            <result column="name" property="name"></result>
+        </association>
+        <association property="infoType" javaType="com.isp.entity.InfoType">
+            <result column="id" property="id"></result>
+            <result column="name" property="name"></result>
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        license.id, school_id, content, kind, date, school.id, school.name, info_type.id, info_type.name
+    </sql>
+
+    <select id="getLicenseNumber" resultType="Integer">
+        SELECT
+        COUNT(id) AS totle
+        FROM license
+    </select>
+
+    <select id="getLicenseById" resultMap="BaseMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM license
+        LEFT JOIN school ON school.id = license.school_id
+        LEFT JOIN info_type ON info_type.id = license.kind
+        WHERE license.id = ${licenseId}
+        ORDER BY license.id DESC
+    </select>
+
+    <select id="getLicenseByPage" resultMap="BaseMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM license
+        LEFT JOIN school ON school.id = license.school_id
+        LEFT JOIN info_type ON info_type.id = license.kind
+        ORDER BY license.id DESC
+        LIMIT ${(page-1)*5},10
+    </select>
+
+</mapper>

@@ -1,0 +1,58 @@
+body {
+    background:url(/image/login-bg.jpg);
+    background-size: 100%;
+}
+hr {
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    width: 75%;
+    height:2px;
+    border:none;
+    border-top:2px
+    dashed
+    #FFFFFF;
+}
+h3 {
+    margin-top: 0;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    height: 50px;
+}
+h4 {
+    filter:alpha(Opacity=70);
+    -moz-opacity:0.7;
+    opacity: 0.7;
+}
+.la {
+    color: #777777;
+}
+.la:link{
+    color: #777777;
+    text-decoration: none;
+}
+.la:visited{
+    color: #777777;
+}
+.la:hover{
+    color: #63A8EE;
+    text-decoration: none;
+}
+.dbg {
+    margin-top: 10px;
+    background-color: #EBEBEB;
+    color: #777777;
+    text-align: center;
+    filter:alpha(Opacity=70);
+    -moz-opacity:0.7;
+    opacity: 0.7;
+}
+.content {
+    text-align: left;
+    padding-left: 25px;
+}
+.border {
+     border:groove;
+     border-color: #FCFCFC;
+ }

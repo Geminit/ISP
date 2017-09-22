@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.isp.dao.SchoolDao">
+
+    <resultMap id="SchoolMap" type="com.isp.entity.School" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="englishName" property="englishName" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="info" property="info" jdbcType="VARCHAR" />
+        <result column="region_id" property="region_id" jdbcType="INTEGER" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="establishDate" property="establishDate" jdbcType="VARCHAR" />
+        <result column="image" property="image" jdbcType="VARCHAR" />
+        <association property="schoolLevel" javaType="com.isp.entity.SchoolLevel">
+            <result column="id" property="id"></result>
+            <result column="name" property="name"></result>
+        </association>
+        <association property="region" javaType="com.isp.entity.Region">
+            <result column="id" property="id"></result>
+            <result column="name" property="name"></result>
+        </association>
+    </resultMap>
+
+    <select id="getSchoolById" resultMap="SchoolMap">
+        SELECT
+        school.id, school.name, englishName, phone, level, info, region_id, address, establishDate, image,
+        school_level.id, school_level.name, region.id, region.name
+        FROM school
+        LEFT JOIN school_level ON school_level.id = school.level
+        LEFT JOIN region ON region.id = school.region_id
+        WHERE school.id = ${schoolId}
+    </select>
+
+    <select id="getGoodSchoolByPage" resultMap="SchoolMap">
+        SELECT
+        id, name, englishName, phone, level, info, region_id, address, establishDate, image
+        FROM school
+        WHERE isGood = 1
+        ORDER BY id DESC
+        LIMIT ${(page-1)*5},10
+    </select>
+
+    <select id="getSchoolPhone" resultMap="SchoolMap">
+        SELECT
+        id, name, englishName, phone, level, info, region_id, address, establishDate, image
+        FROM school
+    </select>
+
+    <select id="getGoodSchoolNumber" resultType="Integer">
+        SELECT
+        COUNT(id) AS totle
+        FROM school
+        WHERE isGood = 1
+    </select>
+
+    <select id="getAllSchool" resultType="String">
+        SELECT
+        name
+        FROM school
+    </select>
+
+</mapper>
