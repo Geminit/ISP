@@ -5,19 +5,27 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
- * @author Geminit
- * @create 2016-9-11
+ * Created by zhang on 2017/9/14.
  */
-
 @Repository
 public interface LicenseDao {
 
-    int getLicenseNumber();
+    List<License> getLicenseAll();
 
-    License getLicenseById(@Param("licenseId") int id);
+    List<License> getLicenseByPage1(Map<String, Object> argsMap);
 
-    List<License> getLicenseByPage(@Param("page")int page);
+    List<License> getLicenseByName(@Param("name") String name);
 
+    List<License> getLicenseById1(@Param("id") Integer id);
+
+    Integer getTotalNumber();
+
+    void insertLicense(Map<String, Object> argsMap);
+
+    void updateLicense(Map<String, Object> argsMap);
+
+    void deleteById(@Param("id") Integer id);
 }
