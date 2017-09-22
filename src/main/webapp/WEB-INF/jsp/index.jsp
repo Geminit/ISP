@@ -45,11 +45,11 @@
         </div> <!--  body-div Íê³É  -->
 
 
-        <div id="button" style="width: 100%;">
-            <center><button class="btn btn-primary" style="width: 120px;height: 50px;background-color: #607B8B;border: none;"
-                            onmouseover="this.style.backgroundColor='#6495ED';"
-                            onmouseout="this.style.backgroundColor='#607B8B';">µÇÂ¼</button></center>
-        </div>
+        <%--<div id="button" style="width: 100%;">--%>
+            <%--<center><button class="btn btn-primary" style="width: 120px;height: 50px;background-color: #607B8B;border: none;"--%>
+                            <%--onmouseover="this.style.backgroundColor='#6495ED';"--%>
+                            <%--onmouseout="this.style.backgroundColor='#607B8B';">µÇÂ¼</button></center>--%>
+        <%--</div>--%>
 
         <script type="text/javascript">
             function jumpTo(url){

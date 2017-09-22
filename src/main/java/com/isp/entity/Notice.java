@@ -3,25 +3,22 @@ package com.isp.entity;
 import java.sql.Timestamp;
 
 /**
- * Created by zhang on 2017/9/14.
+ * Created by zhang on 2017/9/15.
  */
 public class Notice {
-    private Integer notice;
+    private Integer id;
     private String title;
     private String content;
     private String publisher;
     private Timestamp date;
-    private Integer school;
-    private Integer classes;
+    private Integer isClassInfo;
 
-    private School schoole;
-
-    public Integer getNotice() {
-        return notice;
+    public Integer getId() {
+        return id;
     }
 
-    public void setNotice(Integer notice) {
-        this.notice = notice;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -56,27 +53,11 @@ public class Notice {
         this.date = date;
     }
 
-    public Integer getSchool() {
-        return school;
+    public Integer getIsClassInfo() {
+        return isClassInfo;
     }
 
-    public void setSchool(Integer school) {
-        this.school = school;
-    }
-
-    public Integer getClasses() {
-        return classes;
-    }
-
-    public void setClasses(Integer classes) {
-        this.classes = classes;
-    }
-
-    public School getSchoole() {
-        return schoole;
-    }
-
-    public void setSchoole(School schoole) {
-        this.schoole = schoole;
+    public void setIsClassInfo(Integer isClassInfo) {
+        this.isClassInfo = isClassInfo;
     }
 }

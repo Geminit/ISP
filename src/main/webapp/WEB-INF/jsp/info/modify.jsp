@@ -23,7 +23,6 @@
                 <h3><a class="la" href="/isp/info/establish">民办学校设立</a></h3><hr />
                 <h3><a class="la" href="/isp/info/modify" style="color: #63A8EE;">民办学校变更</a></h3><hr />
                 <h3><a class="la" href="/isp/info/end">民办学校终止</a></h3><hr />
-                <h3 style="height:65px;"><a class="la" href="/isp/info/guide">办事指南</a></h3>
             </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -34,9 +33,16 @@
                 <c:forEach var="school" items="${modifyList}">
                     <hr style="width: 95%;" />
                     <div class="content">
-                        <h5><a class="la" href="/isp/info/toSchool?id=${school.schoolId}">${school.schoolName}</a></h5>
+                        <h5><a class="la" href="/isp/toSchool?id=${school.schoolId}">${school.schoolName}</a></h5>
                     </div>
                 </c:forEach>
+                <c:if test="${modifyList == [] }">
+                    <hr style="width: 95%;" />
+                    <div class="content">
+                        <h5>暂无数据</h5>
+                    </div>
+                </c:if>
+                <div style="height: 10px;"></div>
             </div>
             <div class="dbg">
                 <div class="content">
@@ -45,9 +51,16 @@
                 <c:forEach var="license" items="${modifyList}">
                     <hr style="width: 95%;" />
                     <div class="content">
-                        <h5><a class="la" href="/isp/info/toLicense?id=${license.licenseId}">关于修改${license.schoolName}信息的行政许可批复</a></h5>
+                        <h5><a class="la" href="/isp/toLicense?id=${license.licenseId}">关于修改${license.schoolName}信息的行政许可批复</a></h5>
                     </div>
                 </c:forEach>
+                <c:if test="${modifyList == [] }">
+                    <hr style="width: 95%;" />
+                    <div class="content">
+                        <h5>暂无数据</h5>
+                    </div>
+                </c:if>
+                <div style="height: 10px;"></div>
             </div>
         </div>
         <div class="col-md-2 col-sm-2 col-xs-2">

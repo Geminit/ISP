@@ -1,8 +1,8 @@
 package com.isp.controller;
 
-import com.isp.entity.License;
 import com.isp.entity.School;
 import com.isp.service.InfoService;
+import com.isp.service.LicenseService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,10 +43,10 @@ public class InfoController {
 
         for(int i = 0; i<schools.size(); i++){
             map = new HashMap();
-            map.put("date",schools.get(i).getLicense().getLicenseDate());
-            map.put("schoolId",schools.get(i).getSchoolId());
-            map.put("schoolName",schools.get(i).getSchoolName());
-            map.put("licenseId",schools.get(i).getLicense().getLicenseId());
+            map.put("date",schools.get(i).getLicense().getDate());
+            map.put("schoolId",schools.get(i).getId());
+            map.put("schoolName",schools.get(i).getName());
+            map.put("licenseId",schools.get(i).getLicense().getId());
             establishList.add(map);
         }
 
@@ -69,10 +69,10 @@ public class InfoController {
 
         for(int i = 0; i<schools.size(); i++){
             map = new HashMap();
-            map.put("date",schools.get(i).getLicense().getLicenseDate());
-            map.put("schoolId",schools.get(i).getSchoolId());
-            map.put("schoolName",schools.get(i).getSchoolName());
-            map.put("licenseId",schools.get(i).getLicense().getLicenseId());
+            map.put("date",schools.get(i).getLicense().getDate());
+            map.put("schoolId",schools.get(i).getId());
+            map.put("schoolName",schools.get(i).getName());
+            map.put("licenseId",schools.get(i).getLicense().getId());
             modifyList.add(map);
         }
 
@@ -95,9 +95,9 @@ public class InfoController {
 
         for(int i = 0; i<schools.size(); i++){
             map = new HashMap();
-            map.put("date",schools.get(i).getLicense().getLicenseDate());
-            map.put("schoolName",schools.get(i).getSchoolName());
-            map.put("licenseId",schools.get(i).getLicense().getLicenseId());
+            map.put("date",schools.get(i).getLicense().getDate());
+            map.put("schoolName",schools.get(i).getName());
+            map.put("licenseId",schools.get(i).getLicense().getId());
             endingList.add(map);
         }
 
@@ -105,72 +105,6 @@ public class InfoController {
 
         //返回一个index.jsp这个视图
         return "info/end";
-    }
-
-    //映射一个action
-    @RequestMapping("/toSchool")
-    public  String toSchool(Model model, HttpServletRequest request){
-        //输出日志文件
-        logger.info("Visit page school.");
-
-        int schoolId = Integer.parseInt(request.getParameter("id"));
-
-        School school = infoService.getSchoolById(schoolId);
-
-        //返回一个index.jsp这个视图
-        return "info/school";
-    }
-
-    //映射一个action
-    @RequestMapping("/toLicense")
-    public  String toLicense(Model model, HttpServletRequest request){
-        //输出日志文件
-        logger.info("Visit page license.");
-
-        int licenseId = Integer.parseInt(request.getParameter("id"));
-
-        License license = infoService.getLicenseById(licenseId);
-
-        //返回一个index.jsp这个视图
-        return "info/license";
-    }
-
-    //映射一个action
-    @RequestMapping("/guide")
-    public  String guide(Model model, HttpServletRequest request){
-        //输出日志文件
-        logger.info("Visit page info_guide.");
-
-        List<Map> guideList = new ArrayList<Map>();
-        Map map;
-
-//        List<School> guides = infoService.getEndingSchool();
-//
-//        for(int i = 0; i<guides.size(); i++){
-//            map = new HashMap();
-//            map.put("id",guides.get(i).getLicense().getLicenseDate());
-//            map.put("title",guides.get(i).getLicense().getLicenseDate());
-//            guideList.add(map);
-//        }
-
-        model.addAttribute("guideList",guideList);
-
-        //返回一个index.jsp这个视图
-        return "info/guide";
-    }
-
-    //映射一个action
-    @RequestMapping("/toGuide")
-    public  String toGuide(Model model, HttpServletRequest request){
-        //输出日志文件
-        logger.info("Visit page guidePage.");
-
-        int guideId = Integer.parseInt(request.getParameter("id"));
-
-        //License license = infoService.getLicenseById(licenseId);
-
-        //返回一个index.jsp这个视图
-        return "info/guidePage";
     }
 
 }

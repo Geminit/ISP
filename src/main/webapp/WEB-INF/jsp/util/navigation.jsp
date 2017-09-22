@@ -48,28 +48,27 @@
                                             <li onclick="jumpTo('/isp/info/establish')">民办学校设立</li>
                                             <li onclick="jumpTo('/isp/info/modify')">民办学校变更</li>
                                             <li onclick="jumpTo('/isp/info/end')">民办学校终止</li>
-                                            <li onclick="jumpTo('/isp/info/guide')">办事指南</li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
-                            <li style="width: 12.5%;"><a href="#"><h4>通知公告</h4></a></li>
-                            <li style="width: 12.5%;"><a href="#"><h4>行政许可</h4></a></li>
+                            <li style="width: 12.5%;"><a href="/isp/notices"><h4>通知公告</h4></a></li>
                             <li style="width: 12.5%;"><a href="/isp/schools"><h4>民校之窗</h4></a></li>
-                            <li style="width: 12.5%;"><a href="#"><h4>民校人物</h4></a></li>
+                            <li style="width: 12.5%;"><a href="/isp/teachers"><h4>民校人物</h4></a></li>
                             <li style="width: 12.5%;">
                                 <a href="#"><h4>服务发展</h4></a>
                                 <div class="dropdownContain">
                                     <div class="dropOut">
                                         <div class="triangle"></div>
                                         <ul>
-                                            <li onclick="jumpTo('')">咨询服务</li>
-                                            <li onclick="jumpTo('')">民意调查</li>
+                                            <li onclick="jumpTo('/isp/service')">咨询服务</li>
+                                            <li onclick="jumpTo('/isp/investigation')">民意调查</li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
-                            <li class="drop"><a href="#"><h4>大数据</h4></a></li>
+                            <li class="drop"><a href="/isp/data"><h4>民教布局</h4></a></li>
+                            <li style="width: 12.5%;"><a href="#" style="color: deepskyblue"><h4>登录</h4></a></li>
                         </ul>
                     </div>
                 </nav>
@@ -78,36 +77,10 @@
         </div> <!-- outer-row -->
     </div> <!-- head -->
     <%--<!--  button-div 完成  -->--%>
-
-    <%--<script type="application/javascript">--%>
-        <%--$("#mycarousel").carousel({--%>
-        <%--interval: 3000--%>
-        <%--})--%>
-        <%--</script>--%>
-
-        <%--<script type="text/javascript">--%>
-
-        <%--var name = "This page is made by ${name}!";--%>
-        <%--$("#chg").html(name);--%>
-
-        <%--$("#btn").click(--%>
-        <%--function(){--%>
-        <%--var str = {};--%>
-        <%--str["input"] = document.getElementById("input").value;--%>
-        <%--$.ajax({--%>
-        <%--type : 'POST',--%>
-        <%--async : false,--%>
-        <%--url : '/isp/index/demo',--%>
-        <%--data : str,--%>
-        <%--success : function(result){--%>
-        <%--alert(result);--%>
-        <%--},--%>
-        <%--error : function(result){--%>
-        <%--alert("fail");--%>
-        <%--}--%>
-        <%--});--%>
-        <%--}--%>
-        <%--);--%>
-        <%--</script>--%>
+        <script type="text/javascript">
+            function jumpTo(url) {
+                window.location.href = url;
+            }
+        </script>
 </body>
 </html>

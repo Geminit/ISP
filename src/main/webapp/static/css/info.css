@@ -52,3 +52,7 @@ h4 {
     text-align: left;
     padding-left: 25px;
 }
+.border {
+     border:groove;
+     border-color: #FCFCFC;
+ }

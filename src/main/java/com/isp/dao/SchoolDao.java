@@ -15,14 +15,14 @@ import java.util.List;
 @Repository
 public interface SchoolDao {
 
-    List<School> getNewSchool();
+    int getGoodSchoolNumber();
 
-    List<School> getModifiedSchool();
+    List<String> getAllSchool();
 
-    List<School> getEndingSchool();
+    List<School> getGoodSchoolByPage(@Param("page")int page);
+
+    List<School> getSchoolPhone();
 
     School getSchoolById(@Param("schoolId")int schoolId);
-
-    License getLicenseById(@Param("licenseId")int licenseId);
 
 }

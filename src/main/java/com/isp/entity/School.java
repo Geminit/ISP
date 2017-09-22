@@ -1,24 +1,29 @@
 package com.isp.entity;
 
+import java.sql.Date;
+
 /**
  * @author Geminit
- * @create 2016-9-12
+ * @create 2016-9-15
  */
 
 public class School {
 
     private Integer id;
     private String name;
+    private String englishName;
+    private String phone;
     private Integer level;
     private String info;
     private Integer region_id;
     private String address;
     private String image;
+    private Date establishDate;
     private Integer isGood;
 
+    private License license;
     private SchoolLevel schoolLevel;
     private Region region;
-    private License license;
 
     public Region getRegion() {
         return region;
@@ -42,6 +47,22 @@ public class School {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEnglishName() {
+        return englishName;
+    }
+
+    public void setEnglishName(String englishName) {
+        this.englishName = englishName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Integer getLevel() {
@@ -84,6 +105,14 @@ public class School {
         this.image = image;
     }
 
+    public Date getEstablishDate() {
+        return establishDate;
+    }
+
+    public void setEstablishDate(Date establishDate) {
+        this.establishDate = establishDate;
+    }
+
     public Integer getIsGood() {
         return isGood;
     }
@@ -100,7 +129,11 @@ public class School {
         this.schoolLevel = schoolLevel;
     }
 
-    public License getLicense() { return license; }
+    public License getLicense() {
+        return license;
+    }
 
-    public void setLicense(License license) { this.license = license; }
+    public void setLicense(License license) {
+        this.license = license;
+    }
 }

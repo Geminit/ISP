@@ -1,5 +1,6 @@
 package com.isp.service.impl;
 
+import com.isp.dao.InfoDao;
 import com.isp.dao.SchoolDao;
 import com.isp.entity.License;
 import com.isp.entity.School;
@@ -20,15 +21,12 @@ import java.util.List;
 public class InfoServiceImpl implements InfoService {
 
     @Autowired
-    private SchoolDao schoolDao;
+    private InfoDao infoDao;
 
-    public List<School> getNewSchool(){ return schoolDao.getNewSchool(); }
+    public List<School> getNewSchool(){ return infoDao.getNewSchool(); }
 
-    public List<School> getModifiedSchool(){ return schoolDao.getModifiedSchool(); }
+    public List<School> getModifiedSchool(){ return infoDao.getModifiedSchool(); }
 
-    public List<School> getEndingSchool(){ return schoolDao.getEndingSchool(); }
+    public List<School> getEndingSchool(){ return infoDao.getEndingSchool(); }
 
-    public School getSchoolById(int schoolId){ return schoolDao.getSchoolById(schoolId);};
-
-    public License getLicenseById(int licenseId) { return schoolDao.getLicenseById(licenseId); }
 }

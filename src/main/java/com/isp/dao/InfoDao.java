@@ -1,16 +1,17 @@
-package com.isp.service;
+package com.isp.dao;
 
-import com.isp.entity.License;
 import com.isp.entity.School;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author Geminit
- * @create 2016-9-12
+ * @create 2016-9-15
  */
 
-public interface InfoService {
+@Repository
+public interface InfoDao {
 
     List<School> getNewSchool();
 
